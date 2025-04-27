@@ -41,21 +41,9 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
             {icon && <span className="text-gray-500">{icon}</span>}
             <span className="text-gray-700">{label}</span>
           </div>
-          <div className="flex items-center gap-2">
-            {badge && (
-              <span className="text-xs bg-gray-100 px-2 py-1 rounded">{badge}</span>
-            )}
-            <button
-              onClick={handlePin}
-              className="text-gray-400 hover:text-gray-600"
-            >
-              {isPinned ? (
-                <BsPinFill className="w-3 h-3" />
-              ) : (
-                <BsPin className="w-3 h-3" />
-              )}
-            </button>
-          </div>
+          {badge && (
+            <span className="text-xs bg-gray-100 px-2 py-1 rounded">{badge}</span>
+          )}
         </Link>
       </li>
     );
@@ -83,9 +71,19 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="block p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-sm"
+                className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-sm"
               >
-                {item.label}
+                <span>{item.label}</span>
+                <button
+                  onClick={handlePin}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  {isPinned ? (
+                    <BsPinFill className="w-3 h-3" />
+                  ) : (
+                    <BsPin className="w-3 h-3" />
+                  )}
+                </button>
               </Link>
             </li>
           ))}
