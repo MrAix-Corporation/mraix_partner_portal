@@ -1,11 +1,7 @@
-"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { usePathname } from 'next/navigation';
 import "./globals.css";
-import Providers from "./components/Providers";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+import ClientLayout from "./components/ClientLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,24 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isAuthPage = usePathname()?.startsWith('/auth');
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          {isAuthPage ? (
-            children
-          ) : (
-            <div className="min-h-screen flex flex-col bg-white">
-              <Header />
-              <div className="flex flex-1">
-                <Sidebar />
-                <main className="flex-1 p-5 ml-64 mt-16">{children}</main>
-              </div>
-            </div>
-          )}
-        </Providers>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
