@@ -3,8 +3,11 @@ import React from 'react';
 
 //Added date formatting utility function
 function formatDate(date: Date): string {
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  return date.toLocaleDateString('en-US', options);
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(date);
 }
 
 interface PageTemplateProps {
