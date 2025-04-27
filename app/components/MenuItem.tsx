@@ -16,6 +16,17 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isActive = pathname === href;
+  const [isPinned, setIsPinned] = useState(false);
+
+  const handlePin = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsPinned(!isPinned);
+    // Add to favorites in Header
+    const favoriteItem = { label, href, icon };
+    // You'll need to implement a global state management solution to handle this
+    // For now, we'll just toggle the pin state locally
+  };
 
   const baseClasses = `flex items-center justify-between p-2 rounded-lg transition-colors ${
     isActive ? 'bg-gray-100' : 'hover:bg-gray-50'
@@ -29,9 +40,21 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
             {icon && <span className="text-gray-500">{icon}</span>}
             <span className="text-gray-700">{label}</span>
           </div>
-          {badge && (
-            <span className="text-xs bg-gray-100 px-2 py-1 rounded">{badge}</span>
-          )}
+          <div className="flex items-center gap-2">
+            {badge && (
+              <span className="text-xs bg-gray-100 px-2 py-1 rounded">{badge}</span>
+            )}
+            <button
+              onClick={handlePin}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              {isPinned ? (
+                <BsPinFill className="w-3 h-3" />
+              ) : (
+                <BsPin className="w-3 h-3" />
+              )}
+            </button>
+          </div>
         </Link>
       </li>
     );

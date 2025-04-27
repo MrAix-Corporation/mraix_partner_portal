@@ -1,24 +1,48 @@
 
 "use client";
+import { useState } from "react";
 import Link from "next/link";
-import { BsSearch, BsBell } from "react-icons/bs";
+import { BsSearch, BsBell, BsPin, BsPinFill } from "react-icons/bs";
+
+interface FavoriteItem {
+  label: string;
+  href: string;
+  icon?: string;
+}
 
 export default function Header() {
+  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+
+  const toggleFavorite = (item: FavoriteItem) => {
+    if (favorites.some(fav => fav.href === item.href)) {
+      setFavorites(favorites.filter(fav => fav.href !== item.href));
+    } else {
+      setFavorites([...favorites, item]);
+    }
+  };
+
   return (
     <header className="bg-white h-16 flex items-center px-4 fixed top-0 left-0 right-0 z-50 border-b">
       <div className="flex items-center gap-2 mr-4">
-        <span className="text-lg font-semibold text-purple-600">MrAix</span>
-        <div className="relative inline-block">
-          <button className="flex items-center justify-between w-full px-3 py-1.5 bg-purple-50 rounded-full text-sm">
-            <div className="flex items-center">
-              <span className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs">A</span>
-              <span className="ml-2">Acme Inc</span>
-            </div>
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-        </div>
+        <span className="text-lg font-semibold text-purple-600">MrAix ERP</span>
+      </div>
+
+      {/* Favorites Section */}
+      <div className="flex items-center gap-3 px-4 border-l border-r">
+        {favorites.map((item) => (
+          <div key={item.href} className="flex items-center gap-1">
+            <Link href={item.href} className="text-sm text-gray-600 hover:text-gray-900">
+              {item.icon && <span className="mr-1">{item.icon}</span>}
+              {item.label}
+            </Link>
+            <button
+              onClick={() => toggleFavorite(item)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <BsPinFill className="w-3 h-3" />
+            </button>
+          </div>
+        ))}
       </div>
 
       <div className="flex-1 max-w-xl mx-4">
