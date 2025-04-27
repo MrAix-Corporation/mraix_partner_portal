@@ -7,7 +7,23 @@ interface LoginPayload {
 }
 
 interface AuthState {
-  user: any;
+  user: {
+    email?: string;
+    userid?: string;
+    username?: string;
+    phone?: string;
+    isverified?: boolean;
+    ispartner?: boolean;
+    iscustomer?: boolean;
+    issuperadmin?: boolean;
+    isadmin?: boolean;
+    licensenumber?: string;
+    action?: {
+      isactive: boolean;
+      ismodify: boolean;
+      isdelete: boolean;
+    };
+  };
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
@@ -98,8 +114,16 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = {
           ...state.user,
-          firstname: action.payload?.businessrepresentative?.firstname || '',
-          lastname: action.payload?.businessrepresentative?.lastname || '',
+          username: action.payload?.username || '',
+          userid: action.payload?.userid || '',
+          phone: action.payload?.phone || '',
+          isverified: action.payload?.isverified || false,
+          ispartner: action.payload?.ispartner || false,
+          iscustomer: action.payload?.iscustomer || false,
+          issuperadmin: action.payload?.issuperadmin || false,
+          isadmin: action.payload?.isadmin || false,
+          licensenumber: action.payload?.licensenumber || '',
+          action: action.payload?.action || { isactive: false, ismodify: false, isdelete: false }
         };
       })
       .addCase(getUserByEmail.rejected, (state) => {
