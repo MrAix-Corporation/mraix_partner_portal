@@ -1,9 +1,9 @@
 "use client";
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BsPin, BsPinFill } from 'react-icons/bs';
-import { FavoritesContext } from './Header';
+import { useFavorites } from '../context/FavoritesContext';
 
 interface MenuItemProps {
   label: string;
@@ -18,7 +18,7 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
   const pathname = usePathname();
   const isActive = pathname === href;
 
-  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const { favorites, toggleFavorite } = useFavorites();
   const isPinned = favorites.some(fav => fav.href === href);
 
   const handlePin = (e: React.MouseEvent, item: { label: string; href: string }) => {
