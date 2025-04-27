@@ -14,6 +14,11 @@ export const menuItems: MenuItem[] = [
     icon: "M"
   },
   {
+    label: "Favorites",
+    href: "#",
+    submenu: []
+  },
+  {
     label: "Navigation",
     href: "#",
     submenu: [
