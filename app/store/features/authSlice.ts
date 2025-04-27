@@ -12,6 +12,7 @@ interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
+  companies: any[];
 }
 
 const initialState: AuthState = {
@@ -20,7 +21,26 @@ const initialState: AuthState = {
   isAuthenticated: false,
   loading: false,
   error: null,
+  companies: [],
 };
+
+export const getUserByEmail = createAsyncThunk(
+  'auth/getUserByEmail',
+  async (email: string) => {
+    const response = await fetch(`https://host.mraix.com/api/v2/auth/getUserByEmail/${email}`);
+    const data = await response.json();
+    return data.data;
+  }
+);
+
+export const getAllCompanies = createAsyncThunk(
+  'auth/getAllCompanies',
+  async (email: string) => {
+    const response = await fetch(`https://host.mraix.com/api/v2/company/getAllCompaniesByEmail?email=${email}`);
+    const data = await response.json();
+    return data.companies;
+  }
+);
 
 export const loginUser = createAsyncThunk(
   'auth/login',
@@ -70,6 +90,30 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Login failed';
+      })
+      .addCase(getUserByEmail.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserByEmail.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = {
+          ...state.user,
+          firstname: action.payload?.businessrepresentative?.firstname || '',
+          lastname: action.payload?.businessrepresentative?.lastname || '',
+        };
+      })
+      .addCase(getUserByEmail.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(getAllCompanies.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllCompanies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.companies = action.payload;
+      })
+      .addCase(getAllCompanies.rejected, (state) => {
+        state.loading = false;
       });
   },
 });

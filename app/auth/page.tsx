@@ -55,6 +55,8 @@ export default function AuthPage() {
           if (result.status) {
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("token", result.token);
+            await dispatch(getUserByEmail(formData.email)).unwrap();
+            await dispatch(getAllCompanies(formData.email)).unwrap();
             toast.success("Login Successful");
             await router.push("/");
           }
