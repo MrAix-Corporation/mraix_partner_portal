@@ -17,7 +17,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="space-y-6">
-        <div>
+        <div className="border-b border-b-gray-200 pb-4">
           <h2 className="text-secondarygraycolor text-xs mb-2">Favorites</h2>
           <ul className="space-y-1">
             {favorites.map((item) => (
@@ -31,8 +31,8 @@ export default function Sidebar() {
           </ul>
         </div>
         {menuItems.slice(1).map((section, index) => (
-          <div key={index}>
-            {index > 0 && <hr className="my-4 border-gray-200" />}
+          <div key={index} className="border-b border-b-gray-200 pb-4">
+            {index > 0 && <div className="h-4" />}
             <h2 className="text-secondarygraycolor text-xs mb-2">
               {section.label}
             </h2>
