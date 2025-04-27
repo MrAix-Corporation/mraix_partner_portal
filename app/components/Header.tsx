@@ -2,8 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BsSearch, BsBell, BsPin, BsPinFill } from "react-icons/bs";
-import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { toggleFavorite } from '../store/favoritesSlice';
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { toggleFavorite } from "../store/favoritesSlice";
 
 export default function Header() {
   const favorites = useAppSelector((state) => state.favorites.items);
@@ -16,10 +16,8 @@ export default function Header() {
   return (
     <header className="bg-white h-16 flex items-center px-4 fixed top-0 left-0 right-0 z-50 border-b">
       <div className="flex items-center gap-2 mr-4">
-        <span className="text-lg font-semibold text-purple-600">MrAix ERP</span>
+        <span className="text-lg font-semibold text-purple-600">MrAix</span>
       </div>
-
-      
 
       <div className="flex-1 max-w-xl mx-4">
         <div className="relative">
