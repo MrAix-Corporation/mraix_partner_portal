@@ -1,0 +1,1113 @@
+"success": true,
+    "data": {
+        "_id": "67a2f85daae1c0a0a6522b54",
+        "username": "Abhinav",
+        "userid": "F6L00439",
+        "email": "abhinov@cevious.com",
+        "phone": "8826945939",
+        "password": "$2b$10$gmxyj/coLpdxvhzc3M5N/OtdHRT2JMU2BEBnktXmWhozFsfsoBN76",
+        "isverified": true,
+        "ismanuallycreated": true,
+        "ispartner": true,
+        "iscustomer": false,
+        "issuperadmin": false,
+        "issuspended": false,
+        "licensenumber": "81658b2b-334a-4846-bb9a-60ba23f5bba2",
+        "isadmin": false,
+        "tempverificationcode": "837213",
+        "tempverificationexpires": "2025-03-26T07:30:09.299Z",
+        "action": {
+            "isactive": true,
+            "ismodify": false,
+            "isdelete": false
+        },
+        "utilitysettings": {
+            "ip": "http://",
+            "port": "9000",
+            "rangevalue": 200,
+            "syncevery": "15"
+        },
+        "createdAt": "2025-01-02T06:56:28.668Z",
+        "updatedAt": "2025-03-26T07:20:09.301Z",
+        "__v": 0,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTJmODVkYWFlMWMwYTBhNjUyMmI1NCIsImlhdCI6MTc0NTc4MjUxNywiZXhwIjoxNzQ2Mzg3MzE3fQ.h04PScDFu8IL48eHeg8-H193dSzAy1Z41ahwsOagegk",
+        "systeminfo": {
+            "KernelArchitecture": "UNKNOWN",
+            "RawKernelArchitecture": "AMD64",
+            "KernelBitness": "64",
+            "KernelName": "Windows_NT",
+            "KernelVersion": "10.0.26100",
+            "OperatingSystemName": "Microsoft Windows 11 Pro",
+            "OperatingSystemVersion": "10.0.26100",
+            "UserSpaceBitness": "64",
+            "NumberOfCore": "4",
+            "CoreArchitecture": "X86_64",
+            "CoreName": "Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz",
+            "CoreSocket": "3",
+            "CoreVendor": "GenuineIntel",
+            "TotalPhysicalMemory": "15 GB",
+            "FreePhysicalMemory": "2 GB",
+            "TotalVirtualMemory": "33 GB",
+            "FreeVirtualMemory": "11 GB",
+            "VirtualMemorySize": "4 GB"
+        },
+        "timestamp": "2025-03-24T05:42:26.191Z",
+        "totalcredits": 95,
+        "licenseyype": "Standard",
+        "remainingcredits": 93,
+        "usedcredits": 200,
+        "isdemoenable": false,
+        "companies": [
+            {
+                "_id": "67a2f8c0aae1c0a0a6522b58",
+                "databasename": "b128d51v347b539d91f94d943c97c40b",
+                "name": "Cevious Technologies Pvt Limited",
+                "businesslocation": "India",
+                "typeofbusiness": "Limited Liability Companies - (LLC)",
+                "legalbusinessname": "Cevious Technologies Pvt Limited",
+                "panno": "AFZPK7190K",
+                "tanno": "ABCD12345K",
+                "gstidentificationnumber": "09AADCC3339G1ZR",
+                "companyidentificationnumber": "L01631KA2010PTC096843",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "registeredbusinessaddresses": [
+                    {
+                        "address": "Ground Floor, B-7, near Sec-15 Metro Station, B Block, ",
+                        "city": "Noida",
+                        "postalcode": "201301",
+                        "state": "UP",
+                        "country": "IN",
+                        "isdefaultaddress": true,
+                        "addressid": "",
+                        "action": {
+                            "isactive": true,
+                            "ismodify": true,
+                            "isdelete": false
+                        },
+                        "_id": "679332520a0b7d452b52ea81"
+                    }
+                ],
+                "phonenumber": "9810010010",
+                "businessrepresentative": {
+                    "firstname": "Arun ",
+                    "lastname": "Choudhary",
+                    "emailaddress": "arun@cevious.com",
+                    "dob": "1995-01-01T00:00:00.000Z",
+                    "jobtitle": "Tester",
+                    "address": "C 75 Sector 8 ",
+                    "city": "Noida",
+                    "postalcode": "201301",
+                    "state": "UP",
+                    "country": "IN",
+                    "phonenumber": "9810010010",
+                    "pan": "AFZPK7191K",
+                    "ownerShipPercentage": "60%"
+                },
+                "publicdetailsforcustomers": {
+                    "statementdescription": "Statement Descriptior",
+                    "shorteneddescriptor": "Shortened Descriptior",
+                    "customersupportphonenumber": "8882511011"
+                },
+                "gstregistration": [],
+                "globalsetting": {
+                    "currency": "INR"
+                },
+                "region": [
+                    {
+                        "regionid": "8805557c-3a67-4601-9176-eda3429dce9c",
+                        "country": "India",
+                        "countrycode": "India",
+                        "currency": "INR",
+                        "default": true,
+                        "action": {
+                            "isactive": true,
+                            "ismodify": false,
+                            "isdelete": false
+                        },
+                        "_id": "679332520a0b7d452b52ea82"
+                    }
+                ],
+                "guid": "5807459158107888",
+                "productdescription": "Company Description ",
+                "isset": false,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "booksfrom": "20240401",
+                "startingfrom": "20240401",
+                "createddate": "2025-01-24T06:25:22.387Z",
+                "branches": [],
+                "__v": 0,
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "createAutoid": false,
+                    "DateFormat": "yy/MM/dd",
+                    "TimeFormat": null,
+                    "discountViaPercentage": null,
+                    "language": "English",
+                    "timezone": null,
+                    "currency": "INR",
+                    "autoBilling": null,
+                    "decimalPlace": 3,
+                    "showInternalName": null,
+                    "financialYear": "2027-2028",
+                    "multiBranch": true,
+                    "multiDocument": true,
+                    "OUTSTANDING": null
+                },
+                "isfromtally": false
+            },
+            {
+                "_id": "67aef42f35d6936a76f57e3f",
+                "databasename": "294c859a55d7e0af8297db8e5b7d9f86",
+                "name": "ManCom",
+                "businesslocation": "India",
+                "typeofbusiness": "FinTech Company",
+                "legalbusinessname": "ManCom",
+                "panno": "AAAPA1234A",
+                "tanno": "ABCD12345K",
+                "gstidentificationnumber": "22AAAAA0000A1Z5",
+                "companyidentificationnumber": "L17110MH1973PLC019786",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "registeredbusinessaddresses": [
+                    {
+                        "address": "Sector 15",
+                        "city": "Noida",
+                        "postalcode": "234242",
+                        "state": "BR",
+                        "country": "IN",
+                        "isdefaultaddress": true,
+                        "addressid": "",
+                        "action": {
+                            "isactive": true,
+                            "ismodify": true,
+                            "isdelete": false
+                        },
+                        "_id": "67aef42f35d6936a76f57e40"
+                    }
+                ],
+                "phonenumber": "8979878787",
+                "businessrepresentative": {
+                    "firstname": "Abhinav",
+                    "middlename": "Kumar",
+                    "lastname": "Arya",
+                    "emailaddress": "itzabhinavarya@gmail.com",
+                    "dob": "2025-02-14T00:00:00.000Z",
+                    "jobtitle": "Dev",
+                    "address": "Jalalpur Khurd",
+                    "city": "Noida",
+                    "postalcode": "234242",
+                    "state": "BR",
+                    "country": "IN",
+                    "phonenumber": "8979878787",
+                    "pan": "AAAPA1234B",
+                    "ownerShipPercentage": "100%"
+                },
+                "publicdetailsforcustomers": {
+                    "statementdescription": "Statement descriptor *",
+                    "shorteneddescriptor": "Shortened descriptor *",
+                    "customersupportphonenumber": "4345245235"
+                },
+                "gstregistration": [],
+                "globalsetting": {
+                    "currency": "INR"
+                },
+                "region": [
+                    {
+                        "regionid": "462d6b12-6d01-4d93-a9fd-836d9cd66c9f",
+                        "country": "India",
+                        "countrycode": "India",
+                        "currency": "INR",
+                        "default": true,
+                        "action": {
+                            "isactive": true,
+                            "ismodify": false,
+                            "isdelete": false
+                        },
+                        "_id": "67aef42f35d6936a76f57e41"
+                    }
+                ],
+                "guid": "7701796352496659",
+                "productdescription": "Company Description ",
+                "isset": false,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "booksfrom": "20240401",
+                "startingfrom": "20240401",
+                "isfromtally": false,
+                "createddate": "2025-02-14T07:43:43.594Z",
+                "branches": [],
+                "__v": 1,
+                "generalsetting": {
+                    "createAutoid": null,
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "DateFormat": "",
+                    "TimeFormat": "",
+                    "discountViaPercentage": false,
+                    "language": "English",
+                    "autoBilling": false,
+                    "timezone": null,
+                    "currency": "INR",
+                    "decimalPlace": 2,
+                    "showInternalName": false,
+                    "financialYear": "2025-2026",
+                    "multiBranch": false,
+                    "multiDocument": true,
+                    "OUTSTANDING": null,
+                    "gstenableddate": "2025-02-25T06:12:00.226Z"
+                },
+                "companycreditlimit": 95,
+                "remainingcredits": 93,
+                "usedcredits": 200,
+                "isprotected": true,
+                "issystemdefined": false,
+                "modulesenabled": [
+                    {
+                        "moduleid": "67f7566e6c9c910bbda5f144",
+                        "ismoduleenable": true,
+                        "_id": "67f756e56c9c910bbda5f155"
+                    },
+                    {
+                        "moduleid": "67f7567c6c9c910bbda5f147",
+                        "ismoduleenable": true,
+                        "_id": "67f756e56c9c910bbda5f156"
+                    },
+                    {
+                        "moduleid": "67f756816c9c910bbda5f14a",
+                        "ismoduleenable": true,
+                        "_id": "67f756e56c9c910bbda5f157"
+                    },
+                    {
+                        "moduleid": "67f756936c9c910bbda5f14d",
+                        "ismoduleenable": true,
+                        "_id": "67f756e56c9c910bbda5f158"
+                    }
+                ]
+            },
+            {
+                "_id": "68033fd63e14079d99a84dbd",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": false,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 569,
+                "Voucher_maxMasterID": 569,
+                "Ledger_lastMasterID": 341,
+                "Ledger_maxMasterID": 341,
+                "StockItem_maxMasterID": 262,
+                "StockItem_lastMasterID": 262,
+                "Vouchers_lastAlterID": 589,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 504,
+                "databasename": "6dd3683d838023def3b74ddf2d6da936",
+                "encrypteddb": "c6342d938083ca594c00fdd738b1962a:9cedd616800837986e1b0ed35690c92f269f47e409807da787f36edceb1275e6fded0829d4a5d98a9c1fbb0c562fa4e0",
+                "name": "Britannia Industries Ltd.",
+                "basiccompanyformalname": "Britannia Industries Ltd.",
+                "startingfrom": "20220401",
+                "booksfrom": "20220401",
+                "guid": "d880547f-6513-4444-9dc9-6f322687fcdc",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "mohitveer8@gmail.com",
+                    "phonenumber": "01125649831"
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-19T06:16:54.345Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20230331",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2022-04-01T00:00:00.000Z"
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "68033fd63e14079d99a84dbe",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "68033fd63e14079d99a84dbf",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "68033fd63e14079d99a84dc0",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-19T06:16:54.352Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "68033fd63e14079d99a84dc1"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "680352015c0d45b7b77c4857",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": true,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 524,
+                "Voucher_maxMasterID": 524,
+                "Ledger_lastMasterID": 306,
+                "Ledger_maxMasterID": 306,
+                "StockItem_maxMasterID": 247,
+                "StockItem_lastMasterID": 247,
+                "Vouchers_lastAlterID": 630,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 502,
+                "databasename": "ced4ee67f08e0be734e33ed97cdcbe78",
+                "encrypteddb": "8ac6f942fdb72ddfb1241dec61bf82fa:0a561d869e119f93e72a754211341e25ab07a676ddaae87906b1b2d26c28bd2a68d25c1cc937db4ad20ee19d3e9e33e7",
+                "name": "CIPLA LIMITED",
+                "basiccompanyformalname": "CIPLA LIMITED",
+                "startingfrom": "20220401",
+                "booksfrom": "20220401",
+                "guid": "11e3b82d-3af1-4fbc-92e5-7aa531159871",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "",
+                    "phonenumber": ""
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-19T07:34:25.904Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20230401",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2022-04-01T00:00:00.000Z",
+                    "createAutoid": null,
+                    "DateFormat": null,
+                    "TimeFormat": null,
+                    "discountViaPercentage": null,
+                    "language": "English",
+                    "timezone": null,
+                    "currency": null,
+                    "autoBilling": null,
+                    "decimalPlace": 0,
+                    "showInternalName": null,
+                    "financialYear": "2023-2024",
+                    "multiBranch": null,
+                    "multiDocument": null,
+                    "OUTSTANDING": null
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680352015c0d45b7b77c4858",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680352015c0d45b7b77c4859",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680352015c0d45b7b77c485a",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-19T07:34:25.913Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "680352015c0d45b7b77c485b"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "6803543f62a272bc863302d0",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": false,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 36,
+                "Voucher_maxMasterID": 36,
+                "Ledger_lastMasterID": 199,
+                "Ledger_maxMasterID": 199,
+                "StockItem_maxMasterID": 196,
+                "StockItem_lastMasterID": 196,
+                "Vouchers_lastAlterID": 0,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 34,
+                "databasename": "6f39edfeec92b46838f20e685c9073f5",
+                "encrypteddb": "170b3971a2d49305d1244e0beadc1344:0f9032571812b0261ab01306320fd58cbc73fcfed398012c5cfac0757091bab35a5a292fd3f50c19192b58afe9f21440",
+                "name": "Ashok and Sons",
+                "basiccompanyformalname": "Ashok and Sons",
+                "startingfrom": "20230401",
+                "booksfrom": "20230401",
+                "guid": "2172acb6-19bb-4e30-b85b-a7249e364c2c",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "mohitveer8@cevious.com",
+                    "phonenumber": "0124 - 2265069"
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-19T07:43:59.951Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20230915",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2023-04-01T00:00:00.000Z"
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "6803543f62a272bc863302d1",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "6803543f62a272bc863302d2",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "6803543f62a272bc863302d3",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-19T07:43:59.952Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "6803543f62a272bc863302d4"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "680355cb62a272bc8633045e",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": false,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 265,
+                "Voucher_maxMasterID": 265,
+                "Ledger_lastMasterID": 204,
+                "Ledger_maxMasterID": 204,
+                "StockItem_maxMasterID": 203,
+                "StockItem_lastMasterID": 203,
+                "Vouchers_lastAlterID": 285,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 255,
+                "databasename": "64184a8a88e8e3df8e54c2f3acd06c25",
+                "encrypteddb": "b3ebdb858acd718ddc57c3129a751fd8:7404a9e45ccc4b076b65e987d78553bf7fdaf7deec6becf3eaecca8c9e2d67ab9ec47d96c9e20ae79a52e198e41ffabc",
+                "name": "Malvern Pharma",
+                "basiccompanyformalname": "Malvern Pharma",
+                "startingfrom": "20220401",
+                "booksfrom": "20220401",
+                "guid": "c419ceb4-bc11-4f39-986d-9b704ce42e7a",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "",
+                    "phonenumber": "011-27041165"
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-19T07:50:35.450Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20230331",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2022-04-01T00:00:00.000Z",
+                    "createAutoid": null,
+                    "DateFormat": null,
+                    "TimeFormat": null,
+                    "discountViaPercentage": null,
+                    "language": "English",
+                    "timezone": null,
+                    "currency": null,
+                    "autoBilling": null,
+                    "decimalPlace": 0,
+                    "showInternalName": null,
+                    "financialYear": "2022-2023",
+                    "multiBranch": null,
+                    "multiDocument": null,
+                    "OUTSTANDING": null
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680355cb62a272bc8633045f",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680355cb62a272bc86330460",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680355cb62a272bc86330461",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-19T07:50:35.452Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "680355cb62a272bc86330462"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "680355ce62a272bc8633054c",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": false,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 510,
+                "Voucher_maxMasterID": 510,
+                "Ledger_lastMasterID": 191,
+                "Ledger_maxMasterID": 191,
+                "StockItem_maxMasterID": 249,
+                "StockItem_lastMasterID": 249,
+                "Vouchers_lastAlterID": 566,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 483,
+                "databasename": "c0f475e8ec78d8bed61d0bcda60dd45a",
+                "encrypteddb": "05a178aa12957def3d1bd6eec432ae91:aa39a38498e208332b9495d43757c8821fa9c9024496f26867fbb641ffce54247f65e2b936f5c4739ac52347d25211d9",
+                "name": "Intex Technologies India Ltd.",
+                "basiccompanyformalname": "Intex Technologies India Ltd.",
+                "startingfrom": "20220401",
+                "booksfrom": "20220401",
+                "guid": "5d90a4b7-6564-4c39-bbca-4a7bf9167d48",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "",
+                    "phonenumber": ""
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-19T07:50:38.073Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20221230",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2022-04-01T00:00:00.000Z",
+                    "createAutoid": null,
+                    "DateFormat": null,
+                    "TimeFormat": null,
+                    "discountViaPercentage": null,
+                    "language": "English",
+                    "timezone": null,
+                    "currency": null,
+                    "autoBilling": null,
+                    "decimalPlace": 0,
+                    "showInternalName": null,
+                    "financialYear": "2022-2023",
+                    "multiBranch": null,
+                    "multiDocument": null,
+                    "OUTSTANDING": null
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680355ce62a272bc8633054d",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680355ce62a272bc8633054e",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680355ce62a272bc8633054f",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-19T07:50:38.075Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "680355ce62a272bc86330550"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "68037bbc699bf6c054800ed8",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": false,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 19086,
+                "Voucher_maxMasterID": 19086,
+                "Ledger_lastMasterID": 5494,
+                "Ledger_maxMasterID": 5494,
+                "StockItem_maxMasterID": 0,
+                "StockItem_lastMasterID": 0,
+                "Vouchers_lastAlterID": 36627,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 11494,
+                "databasename": "abd8d0507ba87b3d04cb763a722efd07",
+                "encrypteddb": "86d79509adef16bbf974c1b83951700c:7c596e156e3334edc1ef1a3e55518a3012d3ea72f88938762df4d2fda2542b49efab4be733974172ac47219d1c23b92a",
+                "name": "Rastey Commuting Services Pvt. Ltd. - 17 K",
+                "basiccompanyformalname": "Rastey Commuting Services Pvt. Ltd. - 17 K",
+                "startingfrom": "20140401",
+                "booksfrom": "20140401",
+                "guid": "1fbb7a1f-ac14-40bf-9620-7e19f6c78522",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "accounts@rastey.com,booking@rastey.com",
+                    "phonenumber": "91-11-4884 4884"
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-19T10:32:28.560Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20180331",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2014-04-01T00:00:00.000Z",
+                    "createAutoid": null,
+                    "DateFormat": null,
+                    "TimeFormat": null,
+                    "discountViaPercentage": null,
+                    "language": "English",
+                    "timezone": null,
+                    "currency": null,
+                    "autoBilling": null,
+                    "decimalPlace": 0,
+                    "showInternalName": null,
+                    "financialYear": "2019-2020",
+                    "multiBranch": null,
+                    "multiDocument": null,
+                    "OUTSTANDING": null
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "68037bbc699bf6c054800ed9",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "68037bbc699bf6c054800eda",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "68037bbc699bf6c054800edb",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-19T10:32:28.567Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "68037bbc699bf6c054800edc"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "680725ffdb61f2d1367f3821",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "isset": false,
+                "isfromtally": true,
+                "currentPhase": 1,
+                "currentObjectIndex": 10,
+                "Voucher_lastMasterID": 44949,
+                "Voucher_maxMasterID": 44949,
+                "Ledger_lastMasterID": 32823,
+                "Ledger_maxMasterID": 32823,
+                "StockItem_maxMasterID": 32829,
+                "StockItem_lastMasterID": 32829,
+                "Vouchers_lastAlterID": 106812,
+                "Vouchers_maxAlterID": 0,
+                "priority": true,
+                "taskpending": 0,
+                "Voucher_count": 6453,
+                "databasename": "0ea48e41e651e2ffc9f3fc1176a2cce3",
+                "encrypteddb": "11f585fd185d697d663e67d9f65b1754:45ba9fc00cd9a83103fa949e2b8476f0f63947c3a123a739666bb1d08a6d7bb8fc9d8ed6005d0ced396ecd5007323d81",
+                "name": "Bajaj Dreamz (20-22) Noida",
+                "basiccompanyformalname": "Bajaj Dreamz (20-22) Noida",
+                "startingfrom": "20200401",
+                "booksfrom": "20200401",
+                "guid": "276a5f42-ab6b-43c2-ab1f-5414ff96e214",
+                "alterid": 0,
+                "businessrepresentative": {
+                    "emailaddress": "bajajdreamz@gmail.com",
+                    "phonenumber": "9810781536"
+                },
+                "isaggregate": "No",
+                "isconnectedtotally": false,
+                "syncdate": "2025-04-22T05:15:43.879Z",
+                "isdelete": false,
+                "syncstats": [
+                    {
+                        "xmlType": "RESULTDATA",
+                        "range": "0",
+                        "totalMasters": null,
+                        "parkedMasters": null,
+                        "isComplete": true
+                    }
+                ],
+                "isvoucherparse": true,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "lastvoucherdate": "20220430",
+                "generalsetting": {
+                    "gstRegistration": true,
+                    "gstClassification": true,
+                    "gstenableddate": "2020-04-01T00:00:00.000Z",
+                    "createAutoid": null,
+                    "DateFormat": null,
+                    "TimeFormat": null,
+                    "discountViaPercentage": null,
+                    "language": "English",
+                    "timezone": null,
+                    "currency": null,
+                    "autoBilling": null,
+                    "decimalPlace": 0,
+                    "showInternalName": null,
+                    "financialYear": "2023-2024",
+                    "multiBranch": null,
+                    "multiDocument": null,
+                    "OUTSTANDING": null
+                },
+                "modulesenabled": [
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680725ffdb61f2d1367f3822",
+                        "moduleid": "67f8b9c7ad29330793a0e947"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680725ffdb61f2d1367f3823",
+                        "moduleid": "67f8b9cdad29330793a0e94a"
+                    },
+                    {
+                        "ismoduleenable": true,
+                        "_id": "680725ffdb61f2d1367f3824",
+                        "moduleid": "67f8b9d7ad29330793a0e94d"
+                    }
+                ],
+                "registeredbusinessaddresses": [],
+                "region": [],
+                "createddate": "2025-04-22T05:15:43.881Z",
+                "branches": [],
+                "getIStaticsTracking": [
+                    {
+                        "objectType": "",
+                        "tallyMasterID": 0,
+                        "tallyRecordCount": 0,
+                        "parkedRecordCount": 0,
+                        "parsedRecordCount": 0,
+                        "discrepancy": 0,
+                        "_id": "680725ffdb61f2d1367f3825"
+                    }
+                ],
+                "__v": 0
+            },
+            {
+                "_id": "680b797a2e99051633ab05e3",
+                "databasename": "6de7e475c32506dab4ade4e6e91fc49f",
+                "name": "NJI:",
+                "businesslocation": "India",
+                "typeofbusiness": "Automobile Company",
+                "issystemdefined": false,
+                "isprotected": true,
+                "modulesenabled": [
+                    {
+                        "moduleid": "67f8b9c7ad29330793a0e947",
+                        "ismoduleenable": true,
+                        "_id": "680b797a2e99051633ab05e4"
+                    },
+                    {
+                        "moduleid": "67f8b9cdad29330793a0e94a",
+                        "ismoduleenable": true,
+                        "_id": "680b797a2e99051633ab05e5"
+                    },
+                    {
+                        "moduleid": "67f8b9d7ad29330793a0e94d",
+                        "ismoduleenable": true,
+                        "_id": "680b797a2e99051633ab05e6"
+                    }
+                ],
+                "legalbusinessname": "NJI:",
+                "panno": "AAAPA1234A",
+                "tanno": "PDES03028F",
+                "gstidentificationnumber": "09AAACH7409R1ZZ",
+                "companyidentificationnumber": "L01631KA2010PTC096843",
+                "payment": {
+                    "isinternationalpayment": false,
+                    "iswebsite": false,
+                    "isapp": false,
+                    "isoffline": false
+                },
+                "registeredbusinessaddresses": [
+                    {
+                        "address": "Sector 15",
+                        "city": "Noida",
+                        "postalcode": "234242",
+                        "state": "BR",
+                        "country": "IN",
+                        "isdefaultaddress": true,
+                        "addressid": "",
+                        "action": {
+                            "isactive": true,
+                            "ismodify": true,
+                            "isdelete": false
+                        },
+                        "_id": "680b797a2e99051633ab05e7"
+                    }
+                ],
+                "phonenumber": "8979878787",
+                "businessrepresentative": {
+                    "firstname": "Abhinav",
+                    "middlename": "Kumar",
+                    "lastname": "Arya",
+                    "emailaddress": "itzabhinavarya@gmail.com",
+                    "jobtitle": "tert",
+                    "address": "Jalalpur Khurd",
+                    "city": "Noida",
+                    "postalcode": "234242",
+                    "state": "BR",
+                    "country": "IN",
+                    "phonenumber": "8979878787",
+                    "pan": "AAAPA1234E",
+                    "ownerShipPercentage": "100%"
+                },
+                "publicdetailsforcustomers": {
+                    "statementdescription": "Statement descriptor *",
+                    "shorteneddescriptor": "Shortened descript",
+                    "customersupportphonenumber": "6866868686"
+                },
+                "gstregistration": [],
+                "globalsetting": {
+                    "currency": "INR"
+                },
+                "region": [
+                    {
+                        "regionid": "b30862c2-d827-4cbf-b697-e96f48cd010e",
+                        "country": "India",
+                        "countrycode": "India",
+                        "currency": "INR",
+                        "default": true,
+                        "action": {
+                            "isactive": true,
+                            "ismodify": false,
+                            "isdelete": false
+                        },
+                        "_id": "680b797a2e99051633ab05e8"
+                    }
+                ],
+                "guid": "8670714377896334",
+                "productdescription": "Company Descriptio",
+                "isset": false,
+                "user": "67a2f85daae1c0a0a6522b54",
+                "userid": "F6L00439",
+                "booksfrom": "20250401",
+                "startingfrom": "20250401",
+                "isfromtally": false,
+                "companycreditlimit": 0,
+                "usedcredits": 0,
+                "createddate": "2025-04-25T12:00:58.219Z",
+                "branches": [],
+                "__v": 0
+            }
+        ]
+    }
