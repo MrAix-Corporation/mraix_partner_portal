@@ -1,13 +1,12 @@
-
 "use client";
-import { useState } from 'react';
+import { useState } from "react";
 import MenuItem from "./MenuItem";
 import { menuItems } from "../data/menuData";
-import { useFavorites } from '../context/FavoritesContext';
+import { useFavorites } from "../context/FavoritesContext";
 
 export default function Sidebar() {
   const { favorites } = useFavorites();
-  
+
   return (
     <aside className="bg-white w-64 min-h-screen p-4 fixed left-0 top-16 bottom-0 border-r">
       <div className="flex items-center gap-2 mb-6">
