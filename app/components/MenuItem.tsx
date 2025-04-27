@@ -1,3 +1,4 @@
+
 "use client";
 import { useState } from "react";
 import Link from "next/link";
@@ -25,12 +26,9 @@ export default function MenuItem({
   const isActive = pathname === href;
 
   const { favorites, toggleFavorite } = useFavorites();
-  const isPinned = favorites.some((fav) => fav.href === href);
+  const isPinned = favorites.some(fav => fav.href === href);
 
-  const handlePin = (
-    e: React.MouseEvent,
-    item: { label: string; href: string },
-  ) => {
+  const handlePin = (e: React.MouseEvent, item: { label: string; href: string }) => {
     e.preventDefault();
     e.stopPropagation();
     toggleFavorite({ ...item, parentLabel: label });
@@ -93,12 +91,12 @@ export default function MenuItem({
                 href={item.href}
                 className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-xs"
               >
-                <span className="text-xs bg-yello">{item.label}</span>
+                <span>{item.label}</span>
                 <button
                   onClick={(e) => handlePin(e, item)}
                   className="text-gray-400 hover:text-gray-600"
                 >
-                  {isPinned ? (
+                  {favorites.some(fav => fav.href === item.href) ? (
                     <BsPinFill className="w-3 h-3" />
                   ) : (
                     <BsPin className="w-3 h-3" />
