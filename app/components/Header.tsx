@@ -6,8 +6,8 @@ import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { toggleFavorite } from '../store/favoritesSlice';
 
 export default function Header() {
-  const favorites = useSelector((state: RootState) => state.favorites.items);
-  const dispatch = useDispatch();
+  const favorites = useAppSelector((state) => state.favorites.items);
+  const dispatch = useAppDispatch();
 
   const handleToggleFavorite = (item: any) => {
     dispatch(toggleFavorite(item));
