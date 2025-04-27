@@ -17,17 +17,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isAuthPage = usePathname()?.startsWith('/auth');
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="min-h-screen flex flex-col bg-white">
-            <Header />
-            <div className="flex flex-1">
-              <Sidebar />
-              <main className="flex-1 p-5 ml-64 mt-16">{children}</main>
+          {isAuthPage ? (
+            children
+          ) : (
+            <div className="min-h-screen flex flex-col bg-white">
+              <Header />
+              <div className="flex flex-1">
+                <Sidebar />
+                <main className="flex-1 p-5 ml-64 mt-16">{children}</main>
+              </div>
             </div>
-          </div>
+          )}
         </Providers>
       </body>
     </html>
