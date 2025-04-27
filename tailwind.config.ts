@@ -31,7 +31,7 @@ const config: Config = {
           light: "#8665F0",
         },
         primarygraycolor: {
-          DEFAULT: "#A020F0",
+          DEFAULT: "#E1E7EF",
           dark: "#2563EB",
           light: "#60A5FA",
         },
@@ -41,7 +41,7 @@ const config: Config = {
           light: "#60A5FA",
         },
         secondary: {
-          DEFAULT: "#0000F7",
+          DEFAULT: "#3B82F6",
           dark: "#2563EB",
           light: "#60A5FA",
         },

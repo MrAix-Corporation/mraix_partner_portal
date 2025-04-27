@@ -8,31 +8,37 @@ export default function Sidebar() {
   const { favorites } = useFavorites();
 
   return (
-    <aside className="bg-white w-64 min-h-screen p-4 fixed left-0 top-16 bottom-0 border-r">
-      <div className="flex items-center gap-2 mb-6">
-        <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white">
+    <aside className="bg-white w-64 min-h-screen px-3 py-2 fixed left-0 top-16 bottom-0 border-r">
+      <div className="flex items-center gap-2 border-b border-b-gray-200 pb-3 ">
+        <div className="w-9 h-9 bg-purple-600 rounded-full font-bold flex items-center justify-center text-white">
           {menuItems[0].icon}
         </div>
         <span className="text-lg font-semibold">{menuItems[0].label}</span>
       </div>
 
-      <nav className="space-y-6">
-        <div className="border-b border-b-gray-200 pb-4">
-          <h2 className="text-secondarygraycolor text-xs mb-2">Favorites</h2>
-          <ul className="space-y-1">
-            {favorites.map((item) => (
-              <MenuItem
-                key={item.href}
-                label={item.label}
-                href={item.href}
-                icon={item.icon}
-              />
-            ))}
-          </ul>
+      <nav className="">
+        <div className="border-b border-b-gray-200 py-3">
+          <h2 className="text-secondarygraycolor text-xs">Favorites</h2>
+          {favorites?.length > 0 ? (
+            <ul className="space-y-1">
+              {favorites.map((item) => (
+                <MenuItem
+                  key={item.href}
+                  label={item.label}
+                  href={item.href}
+                  icon={item.icon}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="text-xxs text-secondarygraycolor pt-2">
+              Pin items from modules below to add them to your favorites.
+            </p>
+          )}
         </div>
         {menuItems.slice(1).map((section, index) => (
-          <div key={index} className="border-b border-b-gray-200 pb-4">
-            {index > 0 && <div className="h-4" />}
+          <div key={index} className="border-b border-b-gray-200 py-3">
+            {index > 0 && <div className="h-" />}
             <h2 className="text-secondarygraycolor text-xs mb-2">
               {section.label}
             </h2>
