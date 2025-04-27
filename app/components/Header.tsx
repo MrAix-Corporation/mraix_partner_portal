@@ -20,24 +20,7 @@ export default function Header() {
         <span className="text-lg font-semibold text-purple-600">MrAix ERP</span>
       </div>
 
-      <div className="flex items-center gap-3 px-4 border-l border-r">
-        {favorites.map((item) => (
-          <div key={item.href} className="flex items-center gap-1">
-            <Link href={item.href} className="text-sm text-gray-600 hover:text-gray-900">
-              {item.parentLabel && (
-                <span className="text-gray-400 mr-1">{item.parentLabel} / </span>
-              )}
-              {item.label}
-            </Link>
-            <button
-              onClick={() => handleToggleFavorite(item)}
-              className="text-gray-400 hover:text-gray-600"
-            >
-              <BsPinFill className="w-3 h-3" />
-            </button>
-          </div>
-        ))}
-      </div>
+      
 
       <div className="flex-1 max-w-xl mx-4">
         <div className="relative">

@@ -4,7 +4,12 @@ import { useState } from 'react';
 import MenuItem from "./MenuItem";
 import { menuItems } from "../data/menuData";
 
+"use client";
+import { useFavorites } from '../context/FavoritesContext';
+
 export default function Sidebar() {
+  const { favorites } = useFavorites();
+  
   return (
     <aside className="bg-white w-64 min-h-screen p-4 fixed left-0 top-16 bottom-0 border-r">
       <div className="flex items-center gap-2 mb-6">
@@ -15,6 +20,19 @@ export default function Sidebar() {
       </div>
 
       <nav className="space-y-6">
+        <div>
+          <h2 className="text-gray-500 text-sm mb-2">Favorites</h2>
+          <ul className="space-y-1">
+            {favorites.map((item) => (
+              <MenuItem
+                key={item.href}
+                label={item.label}
+                href={item.href}
+                icon={item.icon}
+              />
+            ))}
+          </ul>
+        </div>
         {menuItems.slice(1).map((section, index) => (
           <div key={index}>
             <h2 className="text-gray-500 text-sm mb-2">{section.label}</h2>
