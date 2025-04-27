@@ -9,12 +9,12 @@ export default function Header() {
       <div className="flex items-center gap-2 mr-4">
         <span className="text-lg font-semibold text-purple-600">MrAix</span>
         <div className="relative inline-block">
-          <button className="flex items-center gap-2 px-3 py-1.5 bg-purple-50 rounded-full text-sm">
+          <button className="flex items-center justify-between w-full px-3 py-1.5 bg-purple-50 rounded-full text-sm">
             <div className="flex items-center">
               <span className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs">A</span>
               <span className="ml-2">Acme Inc</span>
             </div>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
