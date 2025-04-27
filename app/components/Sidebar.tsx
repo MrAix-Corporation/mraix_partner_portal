@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import MenuItem from "./MenuItem";
 import { menuItems } from "../data/menuData";
-
-"use client";
 import { useFavorites } from '../context/FavoritesContext';
 
 export default function Sidebar() {
