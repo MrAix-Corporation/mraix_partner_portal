@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { BsSearch, BsBell, BsPin, BsPinFill } from "react-icons/bs";
+import { BsSearch, BsBell, BsPin, BsPinFill, BsGear } from "react-icons/bs";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { toggleFavorite } from "../store/favoritesSlice";
 
@@ -33,13 +33,16 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-4 ml-auto">
-        <button className="p-2 hover:bg-gray-100 rounded-lg relative">
+      <div className="flex items-center justify-end gap-3 ml-auto">
+        <button className="p-2.5 hover:bg-gray-100 rounded-full relative transition-colors">
+          <BsGear className="w-5 h-5 text-gray-600" />
+        </button>
+        <button className="p-2.5 hover:bg-gray-100 rounded-full relative transition-colors">
           <BsBell className="w-5 h-5 text-gray-600" />
           <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
         <div className="flex items-center">
-          <button className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg hover:bg-gray-50">
+          <button className="w-9 h-9 flex items-center justify-center text-sm bg-purple-100 text-purple-600 border-2 border-purple-200 rounded-full hover:bg-purple-200 transition-colors">
             DU
           </button>
         </div>
