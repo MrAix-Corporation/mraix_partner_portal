@@ -3,13 +3,13 @@ import { BsCart4, BsBoxSeam, BsPeople } from "react-icons/bs";
 
 export default function Dashboard() {
   return (
-    <div className="p-">
-      <h1 className="text-2xl font-semibold mb-2">Dashboard</h1>
-      <p className="text-gray-600 mb-8">
+    <div className="">
+      <h1 className="text-xl text-primary font-semibold mb-2">Dashboard</h1>
+      <p className="text-gray-600 text-xs mb-8">
         Welcome back! Here's an overview of your enterprise data.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard
           title="Total Revenue"
           value="$842,314.00"

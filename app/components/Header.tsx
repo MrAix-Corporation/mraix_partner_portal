@@ -42,7 +42,7 @@ export default function Header() {
           <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
         <div className="flex items-center">
-          <button className="w-9 h-9 flex items-center justify-center text-sm bg-purple-100 text-purple-600 border-2 border-purple-200 rounded-full hover:bg-purple-200 transition-colors">
+          <button className="w-9 h-9 flex items-center justify-center text-sm bg-purple-100 text-primary text-xs p3-2 font-semibold border-2 border-purple-200 rounded-full hover:bg-purple-200 transition-colors">
             DU
           </button>
         </div>
