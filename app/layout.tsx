@@ -1,5 +1,4 @@
 
-'use client'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -24,15 +23,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider store={store}>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <div className="flex flex-1">
-            <Sidebar />
-            <main className="flex-1 p-6 ml-64 mt-16">
-              {children}
-            </main>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <div className="flex flex-1">
+              <Sidebar />
+              <main className="flex-1 p-6 ml-64 mt-16">
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
         </Provider>
       </body>
     </html>
