@@ -1,9 +1,10 @@
 
 "use client";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BsPin, BsPinFill } from 'react-icons/bs';
+import { FavoritesContext } from './Header';
 
 interface MenuItemProps {
   label: string;
@@ -19,14 +20,13 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
   const isActive = pathname === href;
   const [isPinned, setIsPinned] = useState(false);
 
-  const handlePin = (e: React.MouseEvent) => {
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const isPinned = favorites.some(fav => fav.href === href);
+
+  const handlePin = (e: React.MouseEvent, item: { label: string; href: string }) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsPinned(!isPinned);
-    // Add to favorites in Header
-    const favoriteItem = { label, href, icon };
-    // You'll need to implement a global state management solution to handle this
-    // For now, we'll just toggle the pin state locally
+    toggleFavorite({ ...item, parentLabel: label });
   };
 
   const baseClasses = `flex items-center justify-between p-2 rounded-lg transition-colors ${
@@ -75,7 +75,7 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
               >
                 <span>{item.label}</span>
                 <button
-                  onClick={handlePin}
+                  onClick={(e) => handlePin(e, item)}
                   className="text-gray-400 hover:text-gray-600"
                 >
                   {isPinned ? (

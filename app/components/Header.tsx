@@ -8,7 +8,16 @@ interface FavoriteItem {
   label: string;
   href: string;
   icon?: string;
+  parentLabel?: string;
 }
+
+export const FavoritesContext = React.createContext<{
+  favorites: FavoriteItem[];
+  toggleFavorite: (item: FavoriteItem) => void;
+}>({
+  favorites: [],
+  toggleFavorite: () => {},
+});
 
 export default function Header() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
@@ -32,7 +41,9 @@ export default function Header() {
         {favorites.map((item) => (
           <div key={item.href} className="flex items-center gap-1">
             <Link href={item.href} className="text-sm text-gray-600 hover:text-gray-900">
-              {item.icon && <span className="mr-1">{item.icon}</span>}
+              {item.parentLabel && (
+                <span className="text-gray-400 mr-1">{item.parentLabel} / </span>
+              )}
               {item.label}
             </Link>
             <button
@@ -44,6 +55,8 @@ export default function Header() {
           </div>
         ))}
       </div>
+
+      <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
 
       <div className="flex-1 max-w-xl mx-4">
         <div className="relative">
@@ -71,5 +84,6 @@ export default function Header() {
         </div>
       </div>
     </header>
+    </FavoritesContext.Provider>
   );
 }
