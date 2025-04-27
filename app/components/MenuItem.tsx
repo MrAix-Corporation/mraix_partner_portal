@@ -1,4 +1,3 @@
-
 "use client";
 import { useState, useContext } from 'react';
 import Link from 'next/link';
@@ -18,7 +17,7 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isActive = pathname === href;
-  
+
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const isPinned = favorites.some(fav => fav.href === href);
 
