@@ -18,7 +18,7 @@ export default function Sidebar() {
 
       <nav className="space-y-6">
         <div>
-          <h2 className="text-gray-500 text-sm mb-2">Favorites</h2>
+          <h2 className="text-secondarygraycolor text-xs mb-2">Favorites</h2>
           <ul className="space-y-1">
             {favorites.map((item) => (
               <MenuItem
@@ -32,7 +32,9 @@ export default function Sidebar() {
         </div>
         {menuItems.slice(1).map((section, index) => (
           <div key={index}>
-            <h2 className="text-gray-500 text-sm mb-2">{section.label}</h2>
+            <h2 className="text-secondarygraycolor text-xs mb-2">
+              {section.label}
+            </h2>
             <ul className="space-y-1">
               {section.submenu?.map((item) => (
                 <MenuItem

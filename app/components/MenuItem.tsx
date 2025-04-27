@@ -36,8 +36,10 @@ export default function MenuItem({
     toggleFavorite({ ...item, parentLabel: label });
   };
 
-  const baseClasses = `flex items-center justify-between p-2 rounded-lg transition-colors ${
-    isActive ? "bg-gray-100" : "hover:bg-gray-50"
+  const baseClasses = `flex hover:bg-secondary/5 items-center justify-between p-2 rounded-lg transition-colors ${
+    isActive
+      ? "text-secondary font-bold bg-secondary/10"
+      : "hover:bg-secondary/5"
   }`;
 
   if (!submenu) {
@@ -91,7 +93,7 @@ export default function MenuItem({
                 href={item.href}
                 className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-xs"
               >
-                <span className="text-xs">{item.label}</span>
+                <span className="text-xs bg-yello">{item.label}</span>
                 <button
                   onClick={(e) => handlePin(e, item)}
                   className="text-gray-400 hover:text-gray-600"
