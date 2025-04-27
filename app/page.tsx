@@ -1,36 +1,37 @@
-
 "use client";
 import { BsCart4, BsBoxSeam, BsPeople } from "react-icons/bs";
 
 export default function Dashboard() {
   return (
-    <div className="p-6">
+    <div className="p-">
       <h1 className="text-2xl font-semibold mb-2">Dashboard</h1>
-      <p className="text-gray-600 mb-8">Welcome back! Here's an overview of your enterprise data.</p>
-      
+      <p className="text-gray-600 mb-8">
+        Welcome back! Here's an overview of your enterprise data.
+      </p>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard 
+        <StatCard
           title="Total Revenue"
           value="$842,314.00"
           change={13.2}
           icon={<BsCart4 className="w-6 h-6 text-blue-500" />}
           note="Projected to exceed target by 8%"
         />
-        <StatCard 
+        <StatCard
           title="Open Orders"
           value="246"
           change={8.4}
           icon={<BsBoxSeam className="w-6 h-6 text-green-500" />}
           note="52 orders require immediate attention"
         />
-        <StatCard 
+        <StatCard
           title="Inventory Value"
           value="$1,240,000.00"
           change={-2.1}
           icon={<BsBoxSeam className="w-6 h-6 text-yellow-500" />}
           note="Consider restocking 5 low items"
         />
-        <StatCard 
+        <StatCard
           title="Active Users"
           value="128"
           change={5.7}
@@ -42,13 +43,25 @@ export default function Dashboard() {
         <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow">
           <div className="flex items-center gap-2 mb-4">
             <div className="p-2 rounded-lg bg-purple-100">
-              <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              <svg
+                className="w-5 h-5 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
               </svg>
             </div>
             <h2 className="text-lg font-semibold">AI-Enhanced Insights</h2>
           </div>
-          <p className="text-gray-600 mb-4">Personalized recommendations based on your business data</p>
+          <p className="text-gray-600 mb-4">
+            Personalized recommendations based on your business data
+          </p>
           <div className="bg-blue-50 p-4 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center">
@@ -56,7 +69,10 @@ export default function Dashboard() {
               </div>
               <h3 className="font-medium">Optimize inventory for Q3</h3>
             </div>
-            <p className="text-sm text-gray-600">Based on seasonal trends, consider increasing stock levels for office supplies by 15% for the upcoming back-to-school season.</p>
+            <p className="text-sm text-gray-600">
+              Based on seasonal trends, consider increasing stock levels for
+              office supplies by 15% for the upcoming back-to-school season.
+            </p>
           </div>
         </div>
 
@@ -66,12 +82,12 @@ export default function Dashboard() {
             AI Insights
           </h2>
           <div className="space-y-4">
-            <InsightCard 
+            <InsightCard
               icon="📦"
               title="Inventory alert"
               description="5 products are below reorder threshold"
             />
-            <InsightCard 
+            <InsightCard
               icon="📈"
               title="Sales trend detected"
               description="Positive trend in electronics category"
@@ -92,8 +108,10 @@ function StatCard({ title, value, change, icon, note }) {
       <h3 className="text-gray-600 text-sm mb-1">{title}</h3>
       <div className="text-2xl font-semibold mb-2">{value}</div>
       <div className="flex items-center gap-2">
-        <span className={`text-sm ${change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-          {change >= 0 ? '↑' : '↓'} {Math.abs(change)}% vs last month
+        <span
+          className={`text-sm ${change >= 0 ? "text-green-500" : "text-red-500"}`}
+        >
+          {change >= 0 ? "↑" : "↓"} {Math.abs(change)}% vs last month
         </span>
       </div>
       {note && <p className="text-sm text-gray-500 mt-2">{note}</p>}

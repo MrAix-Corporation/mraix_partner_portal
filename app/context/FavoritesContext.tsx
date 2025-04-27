@@ -1,16 +1,17 @@
-
-'use client';
-import { createContext, useContext, ReactNode } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
-import { toggleFavorite } from '../store/favoritesSlice';
+"use client";
+import { createContext, useContext, ReactNode } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store/store";
+import { toggleFavorite } from "../store/favoritesSlice";
 
 interface FavoritesContextType {
   favorites: any[];
   toggleFavorite: (item: any) => void;
 }
 
-export const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
+export const FavoritesContext = createContext<FavoritesContextType | undefined>(
+  undefined,
+);
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
   const favorites = useSelector((state: RootState) => state.favorites.items);
@@ -21,7 +22,9 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite: handleToggleFavorite }}>
+    <FavoritesContext.Provider
+      value={{ favorites, toggleFavorite: handleToggleFavorite }}
+    >
       {children}
     </FavoritesContext.Provider>
   );
@@ -30,7 +33,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
 export function useFavorites() {
   const context = useContext(FavoritesContext);
   if (context === undefined) {
-    throw new Error('useFavorites must be used within a FavoritesProvider');
+    throw new Error("useFavorites must be used within a FavoritesProvider");
   }
   return context;
 }
