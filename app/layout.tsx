@@ -2,6 +2,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 
@@ -20,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Provider store={store}>
         <div className="min-h-screen flex flex-col">
           <Header />
           <div className="flex flex-1">
@@ -29,6 +32,7 @@ export default function RootLayout({
             </main>
           </div>
         </div>
+        </Provider>
       </body>
     </html>
   )

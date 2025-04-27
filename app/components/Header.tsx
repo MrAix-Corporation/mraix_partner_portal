@@ -1,33 +1,17 @@
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
 import { BsSearch, BsBell, BsPin, BsPinFill } from "react-icons/bs";
-
-interface FavoriteItem {
-  label: string;
-  href: string;
-  icon?: string;
-  parentLabel?: string;
-}
-
-export const FavoritesContext = React.createContext<{
-  favorites: FavoriteItem[];
-  toggleFavorite: (item: FavoriteItem) => void;
-}>({
-  favorites: [],
-  toggleFavorite: () => {},
-});
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../store/store';
+import { toggleFavorite } from '../store/favoritesSlice';
 
 export default function Header() {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const favorites = useSelector((state: RootState) => state.favorites.items);
+  const dispatch = useDispatch();
 
-  const toggleFavorite = (item: FavoriteItem) => {
-    if (favorites.some(fav => fav.href === item.href)) {
-      setFavorites(favorites.filter(fav => fav.href !== item.href));
-    } else {
-      setFavorites([...favorites, item]);
-    }
+  const handleToggleFavorite = (item: any) => {
+    dispatch(toggleFavorite(item));
   };
 
   return (
@@ -36,7 +20,6 @@ export default function Header() {
         <span className="text-lg font-semibold text-purple-600">MrAix ERP</span>
       </div>
 
-      {/* Favorites Section */}
       <div className="flex items-center gap-3 px-4 border-l border-r">
         {favorites.map((item) => (
           <div key={item.href} className="flex items-center gap-1">
@@ -47,7 +30,7 @@ export default function Header() {
               {item.label}
             </Link>
             <button
-              onClick={() => toggleFavorite(item)}
+              onClick={() => handleToggleFavorite(item)}
               className="text-gray-400 hover:text-gray-600"
             >
               <BsPinFill className="w-3 h-3" />
@@ -55,8 +38,6 @@ export default function Header() {
           </div>
         ))}
       </div>
-
-      <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
 
       <div className="flex-1 max-w-xl mx-4">
         <div className="relative">
@@ -84,6 +65,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-    </FavoritesContext.Provider>
   );
 }
