@@ -18,8 +18,7 @@ export default function MenuItem({ label, href, icon, badge, submenu }: MenuItem
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isActive = pathname === href;
-  const [isPinned, setIsPinned] = useState(false);
-
+  
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const isPinned = favorites.some(fav => fav.href === href);
 
