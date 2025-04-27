@@ -32,6 +32,7 @@ export default function Sidebar() {
         </div>
         {menuItems.slice(1).map((section, index) => (
           <div key={index}>
+            {index > 0 && <hr className="my-4 border-gray-200" />}
             <h2 className="text-secondarygraycolor text-xs mb-2">
               {section.label}
             </h2>
