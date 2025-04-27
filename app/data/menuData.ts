@@ -2,32 +2,36 @@
 interface MenuItem {
   label: string;
   href: string;
+  icon?: string;
+  badge?: string;
   submenu?: MenuItem[];
 }
 
 export const menuItems: MenuItem[] = [
   {
-    label: "Dashboard",
-    href: "/"
+    label: "MrAix ERP",
+    href: "/",
+    icon: "M"
   },
   {
-    label: "Sale",
-    href: "/sale",
+    label: "Favorites",
+    href: "#",
     submenu: [
-      { label: "Customer", href: "/sale/customer" },
-      { label: "Invoice", href: "/sale/invoice" },
-      { label: "Credit Note", href: "/sale/credit-note" },
-      { label: "Receipt", href: "/sale/receipt" }
+      { label: "Sales", href: "/sales", icon: "🛒" }
     ]
   },
   {
-    label: "Purchase",
-    href: "/purchase",
+    label: "Navigation",
+    href: "#",
     submenu: [
-      { label: "Vendor", href: "/purchase/vendor" },
-      { label: "Purchase", href: "/purchase/order" },
-      { label: "Debit Note", href: "/purchase/debit-note" },
-      { label: "Payment", href: "/purchase/payment" }
+      { label: "Dashboard", href: "/", icon: "⊞", badge: "3RD" },
+      { label: "Sales", href: "/sales", icon: "🛒" },
+      { label: "Purchase", href: "/purchase", icon: "🚚" },
+      { label: "Account", href: "/account", icon: "📊" },
+      { label: "Inventory", href: "/inventory", icon: "📦" },
+      { label: "Reports", href: "/reports", icon: "📈" },
+      { label: "Communications", href: "/communications", icon: "✉", badge: "3PM" },
+      { label: "Collaboration", href: "/collaboration", icon: "👥", badge: "OFF" }
     ]
   }
 ];
