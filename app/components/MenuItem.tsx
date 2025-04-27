@@ -4,7 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BsPin, BsPinFill } from "react-icons/bs";
-import { useFavorites } from "../context/FavoritesContext";
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavorite } from '../store/favoritesSlice';
+import type { RootState } from '../store/store';
 
 interface MenuItemProps {
   label: string;
@@ -16,7 +18,7 @@ interface MenuItemProps {
 
 export default function MenuItem({
   label,
-  href,
+  href = "/",
   icon,
   badge,
   submenu,
@@ -24,20 +26,19 @@ export default function MenuItem({
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isActive = pathname === href;
-
-  const { favorites, toggleFavorite } = useFavorites();
+  
+  const favorites = useSelector((state: RootState) => state.favorites.items);
+  const dispatch = useDispatch();
   const isPinned = favorites.some(fav => fav.href === href);
 
   const handlePin = (e: React.MouseEvent, item: { label: string; href: string }) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleFavorite({ ...item, parentLabel: label });
+    dispatch(toggleFavorite({ ...item, parentLabel: label }));
   };
 
   const baseClasses = `flex hover:bg-secondary/5 items-center justify-between p-2 rounded-lg transition-colors ${
-    isActive
-      ? "text-secondary font-bold bg-secondary/10"
-      : "hover:bg-secondary/5"
+    isActive ? "text-secondary font-bold bg-secondary/10" : "hover:bg-secondary/5"
   }`;
 
   if (!submenu) {
@@ -65,21 +66,9 @@ export default function MenuItem({
           {icon && <span className="text-gray-500">{icon}</span>}
           <span className="text-gray-700 text-xs">{label}</span>
         </div>
-        <span
-          className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}
-        >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
+        <span className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
           </svg>
         </span>
       </button>
@@ -88,7 +77,7 @@ export default function MenuItem({
           {submenu.map((item) => (
             <li key={item.href}>
               <Link
-                href={item.href}
+                href={item.href || "/"}
                 className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-xs"
               >
                 <div className="flex items-center gap-2">
@@ -99,7 +88,7 @@ export default function MenuItem({
                   onClick={(e) => handlePin(e, item)}
                   className="text-gray-400 hover:text-gray-600"
                 >
-                  {favorites.some(fav => fav.href === item.href) ? (
+                  {isPinned ? (
                     <BsPinFill className="w-3 h-3" />
                   ) : (
                     <BsPin className="w-3 h-3" />
