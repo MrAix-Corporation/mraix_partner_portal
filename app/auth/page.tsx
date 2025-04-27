@@ -5,8 +5,8 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
-import { loginUser } from "../redux/features/authSlice";
+import { AppDispatch } from "../store/store";
+import { loginUser } from "../store/features/authSlice";
 import { toast } from "react-hot-toast";
 
 interface FormData {
