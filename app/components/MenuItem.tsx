@@ -46,7 +46,7 @@ export default function MenuItem({
         <Link href={href} className={baseClasses}>
           <div className="flex items-center gap-3">
             {icon && <span className="text-gray-500">{icon}</span>}
-            <span className="text-gray-700">{label}</span>
+            <span className="text-gray-700 text-xs">{label}</span>
           </div>
           {badge && (
             <span className="text-xs bg-gray-100 px-2 py-1 rounded">
@@ -63,7 +63,7 @@ export default function MenuItem({
       <button onClick={() => setIsOpen(!isOpen)} className={baseClasses}>
         <div className="flex items-center gap-3">
           {icon && <span className="text-gray-500">{icon}</span>}
-          <span className="text-gray-700">{label}</span>
+          <span className="text-gray-700 text-xs">{label}</span>
         </div>
         <span
           className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}
@@ -89,9 +89,9 @@ export default function MenuItem({
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-sm"
+                className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-xs"
               >
-                <span>{item.label}</span>
+                <span className="text-xs">{item.label}</span>
                 <button
                   onClick={(e) => handlePin(e, item)}
                   className="text-gray-400 hover:text-gray-600"
