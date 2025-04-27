@@ -1,143 +1,319 @@
-
 "use client";
-import { useState } from "react";
-import Link from "next/link";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
 
-export default function Auth() {
+import { useState, FormEvent } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { loginUser } from "../redux/features/authSlice";
+import { toast } from "react-hot-toast";
+
+interface FormData {
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
+  companyName: string;
+}
+
+export default function AuthPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    companyName: "",
+  });
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle authentication logic here
+    setIsLoading(true);
+
+    try {
+      if (isLoginMode) {
+        if (formData.email && formData.password) {
+          const result = await dispatch(
+            loginUser({
+              identifier: formData.email,
+              password: formData.password,
+            }),
+          ).unwrap();
+
+          if (result.status) {
+            localStorage.setItem("isAuthenticated", "true");
+            localStorage.setItem("token", result.token);
+            toast.success("Login Successful");
+            await router.push("/");
+          }
+        }
+      } else {
+        if (
+          formData.email &&
+          formData.password &&
+          formData.name &&
+          formData.phone &&
+          formData.companyName &&
+          acceptTerms
+        ) {
+          localStorage.setItem("isAuthenticated", "true");
+          await router.push("/");
+        }
+      }
+    } catch (error) {
+      console.error("Authentication error:", error);
+      toast.error("Authentication failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left side with purple background */}
-      <div className="hidden lg:flex lg:w-1/2 bg-purple-600 p-12 flex-col text-white">
-        <h1 className="text-4xl font-bold mb-6">Welcome to MrAix</h1>
-        <p className="text-lg mb-12">
-          Your complete invoice and billing management solution
-        </p>
-        
-        <div className="space-y-8">
-          <Feature
-            title="Easy Invoicing"
-            description="Create and send professional invoices in seconds"
-          />
-          <Feature
-            title="Powerful Dashboard"
-            description="Get insights with real-time analytics and reports"
-          />
-          <Feature
-            title="Secure Payments"
-            description="Accept payments online with multiple payment options"
-          />
-        </div>
-      </div>
+    <>
+      {isLoading && <LoadingSpinner />}
+      <div className="flex min-h-screen">
+        <div className="w-1/2 bg-purple-600 p-16 flex flex-col justify-center">
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Welcome to MrAix
+          </h1>
+          <p className="text-xs text-white/90 mb-12">
+            Our platform offers a complete invoice and billing management
+            solution designed to streamline your financial processes. Easily
+            create, send, and track invoices with professional...
+          </p>
 
-      {/* Right side with login form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md">
-          <h2 className="text-2xl font-semibold mb-8">Login</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-sm mb-2" htmlFor="email">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="name@company.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm mb-2" htmlFor="password">
-                Password <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-                >
-                  {showPassword ? <BsEyeSlash size={20} /> : <BsEye size={20} />}
-                </button>
+          <div className="space-y-8">
+            {[
+              {
+                title: "Easy Invoicing",
+                description:
+                  "Quickly create and send professional invoices in seconds to streamline your billing and get paid faster.",
+              },
+              {
+                title: "Powerful Dashboard",
+                description:
+                  "Get valuable insights instantly with real-time analytics and detailed reports to drive smarter business decisions.",
+              },
+              {
+                title: "Secure Payments",
+                description:
+                  "Accept payments online easily with multiple flexible payment options, offering convenience for you and your customers.",
+              },
+            ].map((feature, index) => (
+              <div key={index} className="flex items-start space-x-4">
+                <div className="mt-1 border border-white rounded-full p-1">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="text-white/80 text-xs">{feature.description}</p>
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
 
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="remember"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-              />
-              <label htmlFor="remember" className="ml-2 text-sm">
-                Remember me
-              </label>
-            </div>
+        <div className="w-1/2 flex items-center justify-center bg-gray-50">
+          <div className="w-[450px] p-8 bg-white rounded-2xl shadow-sm">
+            <h2 className="text-2xl border-b border-b-gray-200 pb-4 font-semibold text-purple-600 mb-4">
+              {isLoginMode ? "Login" : "Register"}
+            </h2>
 
-            <button
-              type="submit"
-              className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Sign In
-            </button>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {!isLoginMode && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-medium text-gray-500 mb-2">
+                      Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+                      placeholder="Enter Name"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-gray-500 mb-2">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+                      placeholder="Enter Email"
+                      required
+                    />
+                  </div>
+                </div>
+              )}
 
-            <p className="text-center text-sm text-gray-600">
-              Don't have an account yet?{" "}
-              <Link href="/auth/signup" className="text-purple-600 hover:underline">
-                Sign up
-              </Link>
+              {!isLoginMode ? null : (
+                <div>
+                  <label className="block text-xs font-medium text-gray-500 mb-2">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+              )}
+
+              {!isLoginMode && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-medium text-gray-500 mb-2">
+                      Phone <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+                      placeholder="Enter Phone"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-gray-500 mb-2">
+                      Company Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+                      placeholder="Enter Company Name"
+                      required
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-2">
+                  Password <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+                    placeholder="Enter Password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                  >
+                    {showPassword ? (
+                      <FiEyeOff size={20} />
+                    ) : (
+                      <FiEye size={20} />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {isLoginMode ? (
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                  />
+                  <label
+                    htmlFor="remember"
+                    className="ml-2 block text-xxs text-gray-700"
+                  >
+                    Remember me
+                  </label>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="terms"
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                    required
+                  />
+                  <label
+                    htmlFor="terms"
+                    className="ml-2 block text-xxs text-gray-700"
+                  >
+                    I accept the Terms and Conditions
+                  </label>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+              >
+                {isLoginMode ? "Sign In" : "Register"}
+              </button>
+            </form>
+
+            <p className="mt-6 text-center text-xs text-gray-700">
+              {isLoginMode
+                ? "Don't have an account yet? "
+                : "Already have an account? "}
+              <button
+                onClick={() => setIsLoginMode(!isLoginMode)}
+                className="text-purple-600 hover:underline"
+              >
+                {isLoginMode ? "Register" : "Sign in"}
+              </button>
             </p>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Feature({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="mt-1">
-        <svg
-          className="w-5 h-5 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-      </div>
-      <div>
-        <h3 className="font-semibold text-lg">{title}</h3>
-        <p className="text-purple-200">{description}</p>
-      </div>
-    </div>
+    </>
   );
 }
