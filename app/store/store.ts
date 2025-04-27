@@ -6,6 +6,10 @@ export const store = configureStore({
   reducer: {
     favorites: favoritesReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: true,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

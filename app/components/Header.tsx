@@ -2,8 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BsSearch, BsBell, BsPin, BsPinFill } from "react-icons/bs";
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { toggleFavorite } from '../store/favoritesSlice';
 
 export default function Header() {
