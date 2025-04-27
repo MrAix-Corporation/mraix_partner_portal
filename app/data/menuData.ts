@@ -22,10 +22,10 @@ export const menuItems: MenuItem[] = [
         href: "/sales",
         icon: "🛒",
         submenu: [
-          { label: "Customer", href: "/sales/customer" },
-          { label: "Invoice", href: "/sales/invoice" },
-          { label: "Credit Note", href: "/sales/credit-note" },
-          { label: "Receipt", href: "/sales/receipt" },
+          { label: "Customer", href: "/sales/customer", icon: "👥" },
+          { label: "Invoice", href: "/sales/invoice", icon: "📄" },
+          { label: "Credit Note", href: "/sales/credit-note", icon: "📝" },
+          { label: "Receipt", href: "/sales/receipt", icon: "🧾" },
         ],
       },
       {

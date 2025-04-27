@@ -93,7 +93,10 @@ export default function MenuItem({
                 href={item.href}
                 className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-xs"
               >
-                <span className="text-xs bg-yello">{item.label}</span>
+                <div className="flex items-center gap-2">
+                  {item.icon && <span>{item.icon}</span>}
+                  <span className="text-xs">{item.label}</span>
+                </div>
                 <button
                   onClick={(e) => handlePin(e, item)}
                   className="text-gray-400 hover:text-gray-600"
