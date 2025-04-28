@@ -33,7 +33,7 @@ const initialState: AuthState = {
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (credentials: LoginPayload) => {
-    const response = await fetch("https://host.mraix.com/api/v3/auth/login", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
