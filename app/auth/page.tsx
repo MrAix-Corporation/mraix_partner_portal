@@ -47,18 +47,15 @@ export default function AuthPage() {
         if (formData.email && formData.password) {
           const result = await dispatch(
             loginUser({
-              identifier: formData.email,
+              email: formData.email,
               password: formData.password,
             }),
           ).unwrap();
 
-          if (result.status) {
-            localStorage.setItem("isAuthenticated", "true");
+          if (result.status === true) {
             localStorage.setItem("token", result.token);
-            await dispatch(getUserByEmail(formData.email)).unwrap();
-            await dispatch(getAllCompanies(formData.email)).unwrap();
-            toast.success("Login Successful");
-            await router.push("/");
+            toast.success(result.message || "Login Successful");
+            router.push("/");
           }
         }
       } else {
