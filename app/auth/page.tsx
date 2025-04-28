@@ -75,7 +75,7 @@ export default function AuthPage() {
           formData.companyName &&
           acceptTerms
         ) {
-          await dispatch(
+         const res= await dispatch(
             registerUser({
               username: formData.name,
               email: formData.email,
@@ -85,6 +85,7 @@ export default function AuthPage() {
               ispartner: false,
             }),
           ).unwrap();
+          console.log(res, "res>UUHJK")
           setShowOtpModal(true);
           toast.success(
             "Registration successful! Please verify OTP sent to your email.",
