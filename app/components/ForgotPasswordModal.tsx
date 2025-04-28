@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -83,10 +84,65 @@ export default function ForgotPasswordModal({
         <h2 className="text-2xl font-semibold text-purple-600 mb-4">
           Reset Password
         </h2>
-        {showOtpForm && <OtpVerificationModal  email,
-                            onVerify,
-                            isOpen,
-                            onClose, />}
+        <p className="text-sm text-gray-600 mb-6">
+          {!showOtpForm
+            ? "Enter your email address to receive a verification code"
+            : "Enter the verification code and your new password"}
+        </p>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {!showOtpForm ? (
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+              required
+            />
+          ) : (
+            <>
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter OTP"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                required
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="New Password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                required
+              />
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm New Password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                required
+              />
+            </>
+          )}
+          <div className="flex gap-4 mt-8">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-6 py-3 border-2 border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 text-xs font-medium transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-xs font-medium transition-colors shadow-sm"
+            >
+              {!showOtpForm ? "Send OTP" : "Reset Password"}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
