@@ -43,11 +43,11 @@ export const registerUser = createAsyncThunk(
         body: JSON.stringify(credentials),
       },
     );
-    const data = await response.json();
-    if (!data.status) {
-      throw new Error(data.message || "Registration failed");
-    }
-    return data;
+    // const data = await response.json();
+    // if (!data.status) {
+    //   throw new Error(data.message || "Registration failed");
+    // }
+    return response;
   },
 );
 
@@ -88,11 +88,11 @@ export const loginUser = createAsyncThunk(
         body: JSON.stringify(credentials),
       },
     );
-    const data = await response.json();
-    if (!data.status) {
-      throw new Error(data.message || "Login failed");
-    }
-    return data;
+    // const data = await response.json();
+    // if (!data.status) {
+    //   throw new Error(data.message || "Login failed");
+    // }
+    return response;
   },
 );
 

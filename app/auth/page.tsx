@@ -54,9 +54,9 @@ export default function AuthPage() {
         }),
       ).unwrap();
 
+      console.log(result, "resultlogin>>");
+
       if (result.status) {
-        localStorage.setItem("token", result.token);
-        document.cookie = `token=${result.token}; path=/; max-age=86400`;
         toast.success("Login successful!");
         await router.push("/");
       } else {
@@ -93,8 +93,12 @@ export default function AuthPage() {
         }),
       ).unwrap();
 
+      console.log(result, "result>>DOJPKL");
+
       setShowOtpModal(true);
-      toast.success("Registration successful! Please verify OTP sent to your email.");
+      toast.success(
+        "Registration successful! Please verify OTP sent to your email.",
+      );
     } catch (error) {
       console.error("Registration error:", error);
       toast.error("Registration failed");
