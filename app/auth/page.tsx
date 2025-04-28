@@ -55,12 +55,11 @@ export default function AuthPage() {
           ).unwrap();
 
           if (result.status) {
-            localStorage.setItem("token", result.token);
-            document.cookie = `token=${result.token}; path=/`;
+            localStorage.setItem('token', result.token);
             toast.success("Login successful!");
             await router.push("/");
           } else {
-            toast.error("Login failed. Please check your credentials.");
+            toast.error(result.message || "Login failed");
           }
         } else {
           toast.error("Please fill in all required fields.");
