@@ -53,6 +53,7 @@ export default function AuthPage() {
               password: formData.password,
             }),
           ).unwrap();
+          localStorage.setItem('token', result.token);
           await router.push("/");
           toast.success("Login successful!");
         } else {

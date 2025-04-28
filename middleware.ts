@@ -1,9 +1,9 @@
+
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token");
-  // const token2 = localStorage.get("token");
 
   const isAuthPage = request.nextUrl.pathname.startsWith("/auth");
   const isRegisterPage = request.nextUrl.pathname === "/auth/register";
@@ -11,8 +11,6 @@ export function middleware(request: NextRequest) {
   if (!token && !isAuthPage && !isRegisterPage) {
     return NextResponse.redirect(new URL("/auth", request.url));
   }
-
-  console.log(token, isAuthPage, isRegisterPage, "token>>KLFS");
 
   if (token && (isAuthPage || isRegisterPage)) {
     return NextResponse.redirect(new URL("/", request.url));
