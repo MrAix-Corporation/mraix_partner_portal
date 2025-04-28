@@ -3,8 +3,9 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get("token");
-
+  // Check token from cookies for server-side auth
+  const token = request.cookies.get("token")?.value;
+  
   const isAuthPage = request.nextUrl.pathname.startsWith("/auth");
   const isRegisterPage = request.nextUrl.pathname === "/auth/register";
 
