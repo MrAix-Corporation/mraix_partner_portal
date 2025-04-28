@@ -6,7 +6,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
-import { loginUser } from "../store/features/authSlice";
+import { loginUser } from "../store/auth/authSlice";
 import { toast } from "react-hot-toast";
 
 interface FormData {
@@ -52,11 +52,17 @@ export default function AuthPage() {
             }),
           ).unwrap();
 
-          if (result.status === true) {
-            localStorage.setItem("token", result.token);
-            toast.success(result.message || "Login Successful");
-            router.push("/");
-          }
+          console.log(result, "result.>>SLFOKL");
+          await router.push("/");
+
+          // if (result.status) {
+          //   localStorage.setItem("isAuthenticated", "true");
+          //   localStorage.setItem("token", result.token);
+          //   await dispatch(getUserByEmail(formData.email)).unwrap();
+          //   await dispatch(getAllCompanies(formData.email)).unwrap();
+          //   toast.success("Login Successful");
+          //   await router.push("/");
+          // }
         }
       } else {
         if (
