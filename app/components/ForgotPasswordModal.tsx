@@ -1,6 +1,10 @@
+
 "use client";
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store";
+import { forgotPassword, verifyResetPassword } from "../store/auth/authSlice";
 import LoadingSpinner from "./LoadingSpinner";
 import { toast } from "react-hot-toast";
 
@@ -15,13 +19,12 @@ export default function ForgotPasswordModal({
 }: ForgotPasswordModalProps) {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  if (!isOpen) return null;
-
   const [showResetForm, setShowResetForm] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+
+  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -122,7 +125,7 @@ export default function ForgotPasswordModal({
               type="submit"
               className="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-xs font-medium transition-colors shadow-sm"
             >
-              Send Reset Link
+              {!showResetForm ? "Send Reset Link" : "Reset Password"}
             </button>
           </div>
         </form>
