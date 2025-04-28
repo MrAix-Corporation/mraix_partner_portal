@@ -51,6 +51,48 @@ export const registerUser = createAsyncThunk(
   },
 );
 
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (email: string) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/forgotpassword`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
+    const data = await response.json();
+    if (!data.status) {
+      throw new Error(data.message || "Failed to send reset link");
+    }
+    return data;
+  }
+);
+
+export const verifyResetPassword = createAsyncThunk(
+  "auth/verifyResetPassword",
+  async ({ email, password, confirmpassword }: { email: string; password: string; confirmpassword: string }) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verifyforgotpassword`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, confirmpassword }),
+      }
+    );
+    const data = await response.json();
+    if (!data.status) {
+      throw new Error(data.message || "Password reset failed");
+    }
+    return data;
+  }
+);
+
 export const verifyOtp = createAsyncThunk(
   "auth/verify",
   async ({ email, verificationcode }: { email: string; verificationcode: string }) => {

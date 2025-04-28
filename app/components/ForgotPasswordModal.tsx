@@ -18,16 +18,34 @@ export default function ForgotPasswordModal({
 
   if (!isOpen) return null;
 
+  const [showResetForm, setShowResetForm] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      // Add your password reset API call here
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
-      toast.success("Password reset link sent to your email!");
-      onClose();
+      if (!showResetForm) {
+        await dispatch(forgotPassword(email)).unwrap();
+        setShowResetForm(true);
+        toast.success("Password reset code sent to your email!");
+      } else {
+        if (password !== confirmPassword) {
+          toast.error("Passwords do not match!");
+          return;
+        }
+        await dispatch(verifyResetPassword({
+          email,
+          password,
+          confirmpassword: confirmPassword
+        })).unwrap();
+        toast.success("Password reset successfully!");
+        onClose();
+      }
     } catch (error) {
-      toast.error("Failed to send reset link");
+      toast.error(error?.message || "Failed to process request");
     } finally {
       setIsLoading(false);
     }
@@ -63,14 +81,35 @@ export default function ForgotPasswordModal({
           Enter your email address to receive a password reset link
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
-            required
-          />
+          {!showResetForm ? (
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+              required
+            />
+          ) : (
+            <>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter new password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm mb-3"
+                required
+              />
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm new password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                required
+              />
+            </>
+          )}
           <div className="flex gap-4 mt-8">
             <button
               type="button"
