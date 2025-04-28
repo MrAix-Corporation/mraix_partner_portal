@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -23,7 +22,12 @@ export function VerifyOtpButton({ onClick }: { onClick: () => void }) {
   );
 }
 
-export default function OtpVerificationModal({ email, onVerify, isOpen, onClose }: OtpVerificationModalProps) {
+export default function OtpVerificationModal({
+  email,
+  onVerify,
+  isOpen,
+  onClose,
+}: OtpVerificationModalProps) {
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,15 +51,28 @@ export default function OtpVerificationModal({ email, onVerify, isOpen, onClose 
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
       {isLoading && <LoadingSpinner />}
       <div className="bg-white p-8 rounded-2xl shadow-xl w-[400px] mx-4 relative">
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
-        <h2 className="text-2xl font-semibold text-purple-600 mb-4">OTP Verification</h2>
+        <h2 className="text-2xl font-semibold text-purple-600 mb-4">
+          OTP Verification
+        </h2>
         <p className="text-sm text-gray-600 mb-6">
           Please enter the verification code sent to {email}
         </p>
@@ -72,13 +89,13 @@ export default function OtpVerificationModal({ email, onVerify, isOpen, onClose 
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border-2 border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium transition-colors"
+              className="flex-1 text-xs px-6 py-3 border-2 border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm font-medium transition-colors shadow-sm"
+              className="text-xs flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium transition-colors shadow-sm"
             >
               Verify OTP
             </button>
