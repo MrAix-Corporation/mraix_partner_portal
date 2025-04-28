@@ -55,8 +55,9 @@ export default function AuthPage() {
           ).unwrap();
 
           if (result.status) {
-            localStorage.setItem("token", result.token);
-            document.cookie = `token=${result.token}; path=/`;
+            // Store token in both localStorage and cookie for client/server access
+            localStorage.setItem('authToken', result.token);
+            document.cookie = `token=${result.token}; path=/; max-age=86400`;
             toast.success("Login successful!");
             await router.push("/");
           } else {
