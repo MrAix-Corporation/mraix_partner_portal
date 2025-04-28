@@ -143,7 +143,9 @@ export default function AuthPage() {
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      <ForgotPasswordModal
+      <OtpVerificationModal
+        email,
+        onVerify,
         isOpen={showForgotPasswordModal}
         onClose={() => setShowForgotPasswordModal(false)}
       />
