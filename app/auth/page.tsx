@@ -9,6 +9,7 @@ import { AppDispatch } from "../store/store";
 import { loginUser, registerUser, verifyOtp } from "../store/auth/authSlice";
 import { toast } from "react-hot-toast";
 import OtpVerificationModal from "../components/OtpVerificationModal";
+import ForgotPasswordModal from "../components/ForgotPasswordModal";
 
 interface FormData {
   name: string;
@@ -31,6 +32,7 @@ export default function AuthPage() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [otp, setOtp] = useState("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -141,6 +143,10 @@ export default function AuthPage() {
   return (
     <>
       {isLoading && <LoadingSpinner />}
+      <ForgotPasswordModal
+        isOpen={showForgotPasswordModal}
+        onClose={() => setShowForgotPasswordModal(false)}
+      />
       <OtpVerificationModal
         email={formData.email}
         isOpen={showOtpModal}
@@ -374,10 +380,7 @@ export default function AuthPage() {
                 {isLoginMode && (
                   <button
                     type="button"
-                    onClick={() => {
-                      // Handle forgot password
-                      toast.success("Password reset link sent to your email!");
-                    }}
+                    onClick={() => setShowForgotPasswordModal(true)}
                     className="text-xs text-purple-600 hover:text-purple-800 transition-colors"
                   >
                     Forgot Password?
