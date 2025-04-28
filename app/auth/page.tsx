@@ -1,321 +1,63 @@
 "use client";
-
-import { useState, FormEvent } from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store/store";
-import { loginUser } from "../store/features/authSlice";
-import { toast } from "react-hot-toast";
-
-interface FormData {
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-  companyName: string;
-}
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '../store/hooks';
+import { loginUser } from '../store/features/authSlice';
+import toast from 'react-hot-toast';
 
 export default function AuthPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    companyName: "",
-  });
-  const [rememberMe, setRememberMe] = useState(false);
-  const [isLoginMode, setIsLoginMode] = useState(true);
-  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-
     try {
-      if (isLoginMode) {
-        if (formData.email && formData.password) {
-          const result = await dispatch(
-            loginUser({
-              identifier: formData.email,
-              password: formData.password,
-            }),
-          ).unwrap();
-
-          if (result.status) {
-            localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("token", result.token);
-            await dispatch(getUserByEmail(formData.email)).unwrap();
-            await dispatch(getAllCompanies(formData.email)).unwrap();
-            toast.success("Login Successful");
-            await router.push("/");
-          }
-        }
-      } else {
-        if (
-          formData.email &&
-          formData.password &&
-          formData.name &&
-          formData.phone &&
-          formData.companyName &&
-          acceptTerms
-        ) {
-          localStorage.setItem("isAuthenticated", "true");
-          await router.push("/");
-        }
+      const result = await dispatch(loginUser({ email, password })).unwrap();
+      if (result.status) {
+        localStorage.setItem('token', result.token);
+        toast.success('Login successful!');
+        router.push('/');
       }
-    } catch (error) {
-      console.error("Authentication error:", error);
-      toast.error("Authentication failed");
-    } finally {
-      setIsLoading(false);
+    } catch (error: any) {
+      toast.error(error.message || 'Login failed');
     }
   };
 
   return (
-    <>
-      {isLoading && <LoadingSpinner />}
-      <div className="flex min-h-screen">
-        <div className="w-1/2 bg-purple-600 p-16 flex flex-col justify-center">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            Welcome to MrAix
-          </h1>
-          <p className="text-xs text-white/90 mb-12">
-            Our platform offers a complete invoice and billing management
-            solution designed to streamline your financial processes. Easily
-            create, send, and track invoices with professional...
-          </p>
-
-          <div className="space-y-8">
-            {[
-              {
-                title: "Easy Invoicing",
-                description:
-                  "Quickly create and send professional invoices in seconds to streamline your billing and get paid faster.",
-              },
-              {
-                title: "Powerful Dashboard",
-                description:
-                  "Get valuable insights instantly with real-time analytics and detailed reports to drive smarter business decisions.",
-              },
-              {
-                title: "Secure Payments",
-                description:
-                  "Accept payments online easily with multiple flexible payment options, offering convenience for you and your customers.",
-              },
-            ].map((feature, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="mt-1 border border-white rounded-full p-1">
-                  <svg
-                    className="w-6 h-6 text-white"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="text-white/80 text-xs">{feature.description}</p>
-                </div>
-              </div>
-            ))}
+    <div className="min-h-screen bg-purple-50 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h1 className="text-2xl font-bold text-center mb-6">Login to MrAix</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
           </div>
-        </div>
-
-        <div className="w-1/2 flex items-center justify-center bg-gray-50">
-          <div className="w-[450px] p-8 bg-white rounded-2xl shadow-sm">
-            <h2 className="text-2xl border-b border-b-gray-200 pb-4 font-semibold text-purple-600 mb-4">
-              {isLoginMode ? "Login" : "Register"}
-            </h2>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {!isLoginMode && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 mb-2">
-                      Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
-                      placeholder="Enter Name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 mb-2">
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
-                      placeholder="Enter Email"
-                      required
-                    />
-                  </div>
-                </div>
-              )}
-
-              {!isLoginMode ? null : (
-                <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-2">
-                    Email <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-              )}
-
-              {!isLoginMode && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 mb-2">
-                      Phone <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
-                      placeholder="Enter Phone"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 mb-2">
-                      Company Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="companyName"
-                      value={formData.companyName}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
-                      placeholder="Enter Company Name"
-                      required
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div>
-                <label className="block text-xs font-medium text-gray-500 mb-2">
-                  Password <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
-                    placeholder="Enter Password"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-                  >
-                    {showPassword ? (
-                      <FiEyeOff size={20} />
-                    ) : (
-                      <FiEye size={20} />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {isLoginMode ? (
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor="remember"
-                    className="ml-2 block text-xxs text-gray-700"
-                  >
-                    Remember me
-                  </label>
-                </div>
-              ) : (
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    checked={acceptTerms}
-                    onChange={(e) => setAcceptTerms(e.target.checked)}
-                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                    required
-                  />
-                  <label
-                    htmlFor="terms"
-                    className="ml-2 block text-xxs text-gray-700"
-                  >
-                    I accept the Terms and Conditions
-                  </label>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
-              >
-                {isLoginMode ? "Sign In" : "Register"}
-              </button>
-            </form>
-
-            <p className="mt-6 text-center text-xs text-gray-700">
-              {isLoginMode
-                ? "Don't have an account yet? "
-                : "Already have an account? "}
-              <button
-                onClick={() => setIsLoginMode(!isLoginMode)}
-                className="text-purple-600 hover:underline"
-              >
-                {isLoginMode ? "Register" : "Sign in"}
-              </button>
-            </p>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+              required
+            />
           </div>
-        </div>
+          <button
+            type="submit"
+            className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700"
+          >
+            Login
+          </button>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
