@@ -62,19 +62,23 @@ export const forgotPassword = createAsyncThunk(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
-      }
+      },
     );
-    const data = await response.json();
-    if (!data.status) {
-      throw new Error(data.message || "Failed to send reset link");
-    }
-    return data;
-  }
+    return response;
+  },
 );
 
 export const verifyResetPassword = createAsyncThunk(
   "auth/verifyResetPassword",
-  async ({ email, password, confirmpassword }: { email: string; password: string; confirmpassword: string }) => {
+  async ({
+    email,
+    password,
+    confirmpassword,
+  }: {
+    email: string;
+    password: string;
+    confirmpassword: string;
+  }) => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verifyforgotpassword`,
       {
@@ -83,19 +87,25 @@ export const verifyResetPassword = createAsyncThunk(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password, confirmpassword }),
-      }
+      },
     );
-    const data = await response.json();
-    if (!data.status) {
-      throw new Error(data.message || "Password reset failed");
-    }
-    return data;
-  }
+    // const data = await response.json();
+    // if (!data.status) {
+    //   throw new Error(data.message || "Password reset failed");
+    // }
+    return response;
+  },
 );
 
 export const verifyOtp = createAsyncThunk(
   "auth/verify",
-  async ({ email, verificationcode }: { email: string; verificationcode: string }) => {
+  async ({
+    email,
+    verificationcode,
+  }: {
+    email: string;
+    verificationcode: string;
+  }) => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verify`,
       {

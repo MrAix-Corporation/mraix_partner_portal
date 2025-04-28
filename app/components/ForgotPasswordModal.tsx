@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -31,7 +30,8 @@ export default function ForgotPasswordModal({
     setIsLoading(true);
     try {
       if (!showResetForm) {
-        await dispatch(forgotPassword(email)).unwrap();
+        const res = await dispatch(forgotPassword(email)).unwrap();
+        console.log(res, "UBSJUHJKSF");
         setShowResetForm(true);
         toast.success("Password reset code sent to your email!");
       } else {
@@ -39,11 +39,13 @@ export default function ForgotPasswordModal({
           toast.error("Passwords do not match!");
           return;
         }
-        await dispatch(verifyResetPassword({
-          email,
-          password,
-          confirmpassword: confirmPassword
-        })).unwrap();
+        await dispatch(
+          verifyResetPassword({
+            email,
+            password,
+            confirmpassword: confirmPassword,
+          }),
+        ).unwrap();
         toast.success("Password reset successfully!");
         onClose();
       }
