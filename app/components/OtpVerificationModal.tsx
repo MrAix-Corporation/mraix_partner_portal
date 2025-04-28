@@ -8,18 +8,34 @@ import LoadingSpinner from "./LoadingSpinner";
 interface OtpVerificationModalProps {
   email: string;
   onVerify: (otp: string) => Promise<void>;
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export default function OtpVerificationModal({ email, onVerify, onClose }: OtpVerificationModalProps) {
+export function VerifyOtpButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+    >
+      Verify OTP
+    </button>
+  );
+}
+
+export default function OtpVerificationModal({ email, onVerify, isOpen, onClose }: OtpVerificationModalProps) {
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       await onVerify(otp);
+      setOtp("");
+      onClose();
     } catch (error) {
       toast.error("OTP verification failed");
     } finally {
