@@ -1,0 +1,82 @@
+Design a MrAix Portal using Next.js (latest version with App Router /app) and Tailwind CSS. Implement the following features:
+
+1. Login API Integration
+Create a Login page (/login) with input fields: email and password.
+
+Integrate the Login API using Axios.
+
+The base URL for the API must be stored in a .env.local file as NEXT_PUBLIC_API_BASE_URL.
+
+On successful login:
+
+Show a success message (e.g., "Login Successful!").
+
+Save the token from API response into localStorage with the key "token".
+
+Redirect user to the home page (/).
+
+On login failure:
+
+Display an error message based on the API response.
+
+2. Authentication Setup
+If no token exists in localStorage:
+
+Allow access only to Login and Register pages.
+
+Restrict other pages (/, /dashboard, etc.) and redirect to /login.
+
+If token exists:
+
+Block access to Login and Register pages.
+
+If user tries to open /login or /register, automatically redirect to /.
+
+3. State Management (Redux Toolkit)
+Use Redux Toolkit for global state management.
+
+Create an auth slice to:
+
+Save login user details (token, user info if available).
+
+Provide login, logout actions.
+
+Keep the auth state persisted (rehydrate from localStorage on page load).
+
+4. Environment Variables
+Set the API base URL in .env.local file as:
+
+ini
+Copy
+Edit
+NEXT_PUBLIC_API_BASE_URL=https://yourapi.com
+Axios should pick the base URL dynamically using this environment variable.
+
+5. Technical Requirements
+Use Next.js App Router (/app directory).
+
+Correct usage of Client Components ("use client") and Server Components.
+
+Use useRouter from next/navigation for navigation (redirects).
+
+Use Tailwind CSS for a clean, modern UI.
+
+Optionally add middleware.ts for route protection if needed.
+
+Optional Improvements:
+
+Add toast notifications for success/error messages (e.g., using react-hot-toast).
+
+Create a custom Axios instance with the base URL and token auto-attached if available.
+
+✅ Deliverables:
+Login Page
+
+Redux Auth Setup
+
+API Integration with .env
+
+Route Protection
+
+Tailwind Styled Pages
+
