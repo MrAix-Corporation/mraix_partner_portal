@@ -141,12 +141,26 @@ export default function AuthPage() {
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      {showOtpModal && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
-          <OtpVerificationModal email, onVerify, isOpen, onClose/>
-
-        </div>
-      )}
+      <OtpVerificationModal
+        email={formData.email}
+        isOpen={showOtpModal}
+        onClose={() => setShowOtpModal(false)}
+        onVerify={async (otp) => {
+          try {
+            await dispatch(
+              verifyOtp({
+                email: formData.email,
+                verificationcode: otp,
+              })
+            ).unwrap();
+            setShowOtpModal(false);
+            router.push("/");
+            toast.success("Email verified successfully!");
+          } catch (error) {
+            toast.error("OTP verification failed");
+          }
+        }}
+      />
       <div className="flex min-h-screen">
         <div className="w-1/2 bg-purple-600 p-16 flex flex-col justify-center">
           <h1 className="text-4xl font-bold text-white mb-4">
