@@ -10,18 +10,11 @@ interface AuthState {
   user: {
     email?: string;
     userid?: string;
-    username?: string;
-    phone?: string;
-    isverified?: boolean;
-    ispartner?: boolean;
-    iscustomer?: boolean;
-    issuperadmin?: boolean;
-    isadmin?: boolean;
-    licensenumber?: string;
     action?: {
-      isactive: boolean;
-      ismodify: boolean;
-      isdelete: boolean;
+      ispartner: boolean;
+      isverified: boolean;
+      issuperadmin: boolean;
+      issuspended: boolean;
     };
   };
   token: string | null;
@@ -100,7 +93,7 @@ const authSlice = createSlice({
         state.user = {
           email: action.payload.email,
           userid: action.payload.userid,
-          action: action.payload.action,
+          action: action.payload.action
         };
       })
       .addCase(loginUser.rejected, (state, action) => {
