@@ -123,10 +123,12 @@ export default function AuthPage() {
   const handleOtpSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await dispatch(verifyOtp({ 
-        email: formData.email, 
-        verificationcode: otp 
-      })).unwrap();
+      await dispatch(
+        verifyOtp({
+          email: formData.email,
+          verificationcode: otp,
+        }),
+      ).unwrap();
       setShowOtpModal(false);
       router.push("/");
       toast.success("Email verified successfully!");
@@ -139,9 +141,9 @@ export default function AuthPage() {
     <>
       {isLoading && <LoadingSpinner />}
       {showOtpModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded shadow-md">
-            <h2 className="text-xl font-bold mb-4">OTP Verification</h2>
+            <h2 className="text-lg font-bold mb-4">OTP Verification</h2>
             <form onSubmit={handleOtpSubmit}>
               <input
                 type="text"
