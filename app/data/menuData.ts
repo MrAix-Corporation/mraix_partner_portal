@@ -54,6 +54,16 @@ export const menuItems: MenuItem[] = [
         icon: "👥",
         badge: "OFF",
       },
+      {
+        label: "Item Management",
+        href: "/item-management",
+        icon: "📦",
+        submenu: [
+          { label: "Categories", href: "/item-management/categories" },
+          { label: "Products", href: "/item-management/products" },
+          { label: "Godowns", href: "/item-management/godowns" },
+        ]
+      },
     ],
   },
 ];
