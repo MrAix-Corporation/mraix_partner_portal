@@ -54,13 +54,9 @@ export default function AuthPage() {
             }),
           ).unwrap();
 
-          if (result.status) {
-            localStorage.setItem('token', result.token);
-            toast.success("Login successful!");
-            await router.push("/");
-          } else {
-            toast.error(result.message || "Login failed");
-          }
+          localStorage.setItem("token", result.token);
+          console.log(result, "resultJO");
+          await router.push("/");
         } else {
           toast.error("Please fill in all required fields.");
         }
