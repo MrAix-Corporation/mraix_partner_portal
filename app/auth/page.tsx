@@ -53,9 +53,14 @@ export default function AuthPage() {
               password: formData.password,
             }),
           ).unwrap();
-          localStorage.setItem('token', result.token);
-          await router.push("/");
-          toast.success("Login successful!");
+
+          if (result.status) {
+            localStorage.setItem('token', result.token);
+            toast.success("Login successful!");
+            await router.push("/");
+          } else {
+            toast.error(result.message || "Login failed");
+          }
         } else {
           toast.error("Please fill in all required fields.");
         }
