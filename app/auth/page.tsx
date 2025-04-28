@@ -151,7 +151,7 @@ export default function AuthPage() {
               verifyOtp({
                 email: formData.email,
                 verificationcode: otp,
-              })
+              }),
             ).unwrap();
             setShowOtpModal(false);
             router.push("/");
