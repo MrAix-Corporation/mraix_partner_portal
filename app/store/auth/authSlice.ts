@@ -31,54 +31,63 @@ const initialState: AuthState = {
 };
 
 export const registerUser = createAsyncThunk(
-  'auth/register',
+  "auth/register",
   async (credentials: any) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
       },
-      body: JSON.stringify(credentials),
-    });
+    );
     const data = await response.json();
     if (!data.status) {
-      throw new Error(data.message || 'Registration failed');
+      throw new Error(data.message || "Registration failed");
     }
     return data;
-  }
+  },
 );
 
 export const verifyOtp = createAsyncThunk(
-  'auth/verify',
+  "auth/verify",
   async ({ email, otp }: { email: string; otp: string }) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verify/${email}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verify/${email}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ otp }),
       },
-      body: JSON.stringify({ otp }),
-    });
+    );
     const data = await response.json();
     if (!data.status) {
-      throw new Error(data.message || 'OTP verification failed');
+      throw new Error(data.message || "OTP verification failed");
     }
     if (data.token) {
-      localStorage.setItem('token', data.token);
+      localStorage.setItem("token", data.token);
     }
     return data;
-  }
+  },
 );
 
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (credentials: LoginPayload) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
       },
-      body: JSON.stringify(credentials),
-    });
+    );
     const data = await response.json();
     if (!data.status) {
       throw new Error(data.message || "Login failed");

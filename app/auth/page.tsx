@@ -6,7 +6,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
-import { loginUser } from "../store/auth/authSlice";
+import { loginUser, registerUser, verifyOtp } from "../store/auth/authSlice";
 import { toast } from "react-hot-toast";
 
 interface FormData {
@@ -29,6 +29,8 @@ export default function AuthPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [otp, setOtp] = useState('');
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -51,18 +53,7 @@ export default function AuthPage() {
               password: formData.password,
             }),
           ).unwrap();
-
-          console.log(result, "result.>>SLFOKL");
           await router.push("/");
-
-          // if (result.status) {
-          //   localStorage.setItem("isAuthenticated", "true");
-          //   localStorage.setItem("token", result.token);
-          //   await dispatch(getUserByEmail(formData.email)).unwrap();
-          //   await dispatch(getAllCompanies(formData.email)).unwrap();
-          //   toast.success("Login Successful");
-          //   await router.push("/");
-          // }
         }
       } else {
         if (
@@ -73,8 +64,16 @@ export default function AuthPage() {
           formData.companyName &&
           acceptTerms
         ) {
-          localStorage.setItem("isAuthenticated", "true");
-          await router.push("/");
+          await dispatch(registerUser({
+            username: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            password: formData.password,
+            companyname: formData.companyName,
+            ispartner: false
+          })).unwrap();
+          setShowOtpModal(true);
+          toast.success('Registration successful! Please verify OTP sent to your email.');
         }
       }
     } catch (error) {
@@ -85,9 +84,40 @@ export default function AuthPage() {
     }
   };
 
+  const handleOtpSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      await dispatch(verifyOtp({ email: formData.email, otp })).unwrap();
+      setShowOtpModal(false);
+      router.push('/');
+      toast.success('Email verified successfully!');
+    } catch (error) {
+      toast.error('OTP verification failed');
+    }
+  };
+
   return (
     <>
       {isLoading && <LoadingSpinner />}
+      {showOtpModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded shadow-md">
+            <h2 className="text-xl font-bold mb-4">OTP Verification</h2>
+            <form onSubmit={handleOtpSubmit}>
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter OTP"
+                className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
+              />
+              <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
+                Verify OTP
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
       <div className="flex min-h-screen">
         <div className="w-1/2 bg-purple-600 p-16 flex flex-col justify-center">
           <h1 className="text-4xl font-bold text-white mb-4">
