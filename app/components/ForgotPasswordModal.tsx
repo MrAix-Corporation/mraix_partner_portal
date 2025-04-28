@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -18,7 +19,8 @@ export default function ForgotPasswordModal({
 }: ForgotPasswordModalProps) {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showResetForm, setShowResetForm] = useState(false);
+  const [showOtpForm, setShowOtpForm] = useState(false);
+  const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
@@ -29,11 +31,10 @@ export default function ForgotPasswordModal({
     e.preventDefault();
     setIsLoading(true);
     try {
-      if (!showResetForm) {
-        const res = await dispatch(forgotPassword(email)).unwrap();
-        console.log(res, "UBSJUHJKSF");
-        setShowResetForm(true);
-        toast.success("Password reset code sent to your email!");
+      if (!showOtpForm) {
+        await dispatch(forgotPassword(email)).unwrap();
+        setShowOtpForm(true);
+        toast.success("OTP sent to your email!");
       } else {
         if (password !== confirmPassword) {
           toast.error("Passwords do not match!");
@@ -44,7 +45,7 @@ export default function ForgotPasswordModal({
             email,
             password,
             confirmpassword: confirmPassword,
-          }),
+          })
         ).unwrap();
         toast.success("Password reset successfully!");
         onClose();
@@ -83,10 +84,12 @@ export default function ForgotPasswordModal({
           Reset Password
         </h2>
         <p className="text-sm text-gray-600 mb-6">
-          Enter your email address to receive a password reset link
+          {!showOtpForm
+            ? "Enter your email address to receive a verification code"
+            : "Enter the verification code and your new password"}
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
-          {!showResetForm ? (
+          {!showOtpForm ? (
             <input
               type="email"
               value={email}
@@ -97,6 +100,14 @@ export default function ForgotPasswordModal({
             />
           ) : (
             <>
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                placeholder="Enter OTP"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm mb-3"
+                required
+              />
               <input
                 type="password"
                 value={password}
@@ -127,7 +138,7 @@ export default function ForgotPasswordModal({
               type="submit"
               className="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-xs font-medium transition-colors shadow-sm"
             >
-              {!showResetForm ? "Send Reset Link" : "Reset Password"}
+              {!showOtpForm ? "Send OTP" : "Reset Password"}
             </button>
           </div>
         </form>
