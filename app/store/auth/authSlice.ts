@@ -53,15 +53,15 @@ export const registerUser = createAsyncThunk(
 
 export const verifyOtp = createAsyncThunk(
   "auth/verify",
-  async ({ email, otp }: { email: string; otp: string }) => {
+  async ({ email, verificationcode }: { email: string; verificationcode: string }) => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verify/${email}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/verify`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ otp }),
+        body: JSON.stringify({ email, verificationcode }),
       },
     );
     const data = await response.json();

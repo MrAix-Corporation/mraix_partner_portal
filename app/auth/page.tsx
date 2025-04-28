@@ -123,7 +123,10 @@ export default function AuthPage() {
   const handleOtpSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await dispatch(verifyOtp({ email: formData.email, otp })).unwrap();
+      await dispatch(verifyOtp({ 
+        email: formData.email, 
+        verificationcode: otp 
+      })).unwrap();
       setShowOtpModal(false);
       router.push("/");
       toast.success("Email verified successfully!");
