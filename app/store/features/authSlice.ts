@@ -1,5 +1,4 @@
-
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 interface LoginPayload {
   email: string;
@@ -32,32 +31,32 @@ const initialState: AuthState = {
 };
 
 export const loginUser = createAsyncThunk(
-  'auth/login',
+  "auth/login",
   async (credentials: LoginPayload) => {
-    const response = await fetch('http://0.0.0.0:8009/api/v3/auth/login', {
-      method: 'POST',
+    const response = await fetch("https://host.mraix.com/api/v3/auth/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(credentials),
     });
     const data = await response.json();
     if (!data.status) {
-      throw new Error(data.message || 'Login failed');
+      throw new Error(data.message || "Login failed");
     }
     return data;
-  }
+  },
 );
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     logout: (state) => {
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
@@ -73,12 +72,12 @@ const authSlice = createSlice({
         state.user = {
           email: action.payload.email,
           userid: action.payload.userid,
-          action: action.payload.action
+          action: action.payload.action,
         };
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Login failed';
+        state.error = action.error.message || "Login failed";
       });
   },
 });
