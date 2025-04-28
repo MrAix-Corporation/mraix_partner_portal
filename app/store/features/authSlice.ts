@@ -1,7 +1,8 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 interface LoginPayload {
-  email: string;
+  identifier: string;
   password: string;
 }
 
@@ -9,18 +10,11 @@ interface AuthState {
   user: {
     email?: string;
     userid?: string;
-    username?: string;
-    phone?: string;
-    isverified?: boolean;
-    ispartner?: boolean;
-    iscustomer?: boolean;
-    issuperadmin?: boolean;
-    isadmin?: boolean;
-    licensenumber?: string;
     action?: {
-      isactive: boolean;
-      ismodify: boolean;
-      isdelete: boolean;
+      ispartner: boolean;
+      isverified: boolean;
+      issuperadmin: boolean;
+      issuspended: boolean;
     };
   };
   token: string | null;
@@ -39,10 +33,28 @@ const initialState: AuthState = {
   companies: [],
 };
 
+export const getUserByEmail = createAsyncThunk(
+  'auth/getUserByEmail',
+  async (email: string) => {
+    const response = await fetch(`https://host.mraix.com/api/v2/auth/getUserByEmail/${email}`);
+    const data = await response.json();
+    return data.data;
+  }
+);
+
+export const getAllCompanies = createAsyncThunk(
+  'auth/getAllCompanies',
+  async (email: string) => {
+    const response = await fetch(`https://host.mraix.com/api/v2/company/getAllCompaniesByEmail?email=${email}`);
+    const data = await response.json();
+    return data.companies;
+  }
+);
+
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: LoginPayload) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
+    const response = await fetch('https://host.mraix.com/api/v2/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,13 +93,44 @@ const authSlice = createSlice({
         state.user = {
           email: action.payload.email,
           userid: action.payload.userid,
-          username: action.payload.username,
           action: action.payload.action
         };
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Login failed';
+      })
+      .addCase(getUserByEmail.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserByEmail.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = {
+          ...state.user,
+          username: action.payload?.username || '',
+          userid: action.payload?.userid || '',
+          phone: action.payload?.phone || '',
+          isverified: action.payload?.isverified || false,
+          ispartner: action.payload?.ispartner || false,
+          iscustomer: action.payload?.iscustomer || false,
+          issuperadmin: action.payload?.issuperadmin || false,
+          isadmin: action.payload?.isadmin || false,
+          licensenumber: action.payload?.licensenumber || '',
+          action: action.payload?.action || { isactive: false, ismodify: false, isdelete: false }
+        };
+      })
+      .addCase(getUserByEmail.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(getAllCompanies.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllCompanies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.companies = action.payload;
+      })
+      .addCase(getAllCompanies.rejected, (state) => {
+        state.loading = false;
       });
   },
 });
