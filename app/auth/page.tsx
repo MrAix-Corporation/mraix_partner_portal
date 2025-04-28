@@ -14,10 +14,7 @@ export default function AuthPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const result = await dispatch(loginUser({ 
-        identifier: email,
-        password: password 
-      })).unwrap();
+      const result = await dispatch(loginUser({ email, password })).unwrap();
       if (result.status) {
         localStorage.setItem('token', result.token);
         toast.success('Login successful!');
