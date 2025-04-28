@@ -40,61 +40,77 @@ export default function AuthPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleLogin = async () => {
+    if (!formData.email || !formData.password) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
+    try {
+      const result = await dispatch(
+        loginUser({
+          identifier: formData.email,
+          password: formData.password,
+        }),
+      ).unwrap();
+
+      if (result.status) {
+        localStorage.setItem("token", result.token);
+        document.cookie = `token=${result.token}; path=/; max-age=86400`;
+        toast.success("Login successful!");
+        await router.push("/");
+      } else {
+        toast.error("Login failed. Please check your credentials.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Login failed");
+    }
+  };
+
+  const handleRegister = async () => {
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.name ||
+      !formData.phone ||
+      !formData.companyName ||
+      !acceptTerms
+    ) {
+      toast.error("Please fill in all required fields and accept terms.");
+      return;
+    }
+
+    try {
+      const result = await dispatch(
+        registerUser({
+          username: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          password: formData.password,
+          companyname: formData.companyName,
+          ispartner: false,
+        }),
+      ).unwrap();
+
+      setShowOtpModal(true);
+      toast.success("Registration successful! Please verify OTP sent to your email.");
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error("Registration failed");
+    }
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
       if (isLoginMode) {
-        if (formData.email && formData.password) {
-          const result = await dispatch(
-            loginUser({
-              identifier: formData.email,
-              password: formData.password,
-            }),
-          ).unwrap();
-
-          if (result.status) {
-            // Store token in both localStorage and cookie for client/server access
-            localStorage.setItem('authToken', result.token);
-            document.cookie = `token=${result.token}; path=/; max-age=86400`;
-            toast.success("Login successful!");
-            await router.push("/");
-          } else {
-            toast.error("Login failed. Please check your credentials.");
-          }
-        } else {
-          toast.error("Please fill in all required fields.");
-        }
+        await handleLogin();
       } else {
-        if (
-          formData.email &&
-          formData.password &&
-          formData.name &&
-          formData.phone &&
-          formData.companyName &&
-          acceptTerms
-        ) {
-         const res= await dispatch(
-            registerUser({
-              username: formData.name,
-              email: formData.email,
-              phone: formData.phone,
-              password: formData.password,
-              companyname: formData.companyName,
-              ispartner: false,
-            }),
-          ).unwrap();
-          console.log(res, "res>UUHJK")
-          setShowOtpModal(true);
-          toast.success(
-            "Registration successful! Please verify OTP sent to your email.",
-          );
-        }
+        await handleRegister();
       }
-    } catch (error) {
-      console.error("Authentication error:", error);
-      toast.error("Authentication failed");
     } finally {
       setIsLoading(false);
     }
