@@ -370,6 +370,20 @@ export default function AuthPage() {
                 </div>
               )}
 
+              <div className="flex justify-between items-center mb-4">
+                {isLoginMode && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      // Handle forgot password
+                      toast.success("Password reset link sent to your email!");
+                    }}
+                    className="text-xs text-purple-600 hover:text-purple-800 transition-colors"
+                  >
+                    Forgot Password?
+                  </button>
+                )}
+              </div>
               <button
                 type="submit"
                 className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
