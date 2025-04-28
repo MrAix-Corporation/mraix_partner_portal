@@ -1,117 +1,114 @@
-"use client";
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BsPin, BsPinFill } from "react-icons/bs";
-import { useFavorites } from "../context/FavoritesContext";
+import { IconType } from "react-icons";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
+import { LuPin } from "react-icons/lu";
+import { MdPushPin } from "react-icons/md";
 
-interface MenuItemProps {
-  label: string;
-  href: string;
-  icon?: string;
-  badge?: string;
-  submenu?: { label: string; href: string }[];
+interface SubMenuItem {
+  title: string;
+  icon: IconType;
+  path: string;
 }
 
-export default function MenuItem({
-  label,
-  href,
-  icon,
-  badge,
+interface MenuItemProps {
+  title: string;
+  icon: IconType;
+  path?: string;
+  submenu?: SubMenuItem[];
+  isExpanded: boolean;
+  expandedMenu: string | null;
+  onToggleMenu: (menu: string) => void;
+  onPinItem?: (item: { title: string; icon: IconType; path: string }) => void;
+  pinnedItems: string[]; // <-- make sure this is here
+}
+
+const MenuItem = ({
+  title,
+  icon: Icon,
+  path,
   submenu,
-}: MenuItemProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
-  const isActive = pathname === href;
+  isExpanded,
+  expandedMenu,
+  onToggleMenu,
+  onPinItem,
+  pinnedItems,
+}: MenuItemProps) => {
+  const isSubMenuOpen = expandedMenu === title;
 
-  const { favorites, toggleFavorite } = useFavorites();
-  const isPinned = favorites.some((fav) => fav.href === href);
-
-  const handlePin = (
-    e: React.MouseEvent,
-    item: { label: string; href: string },
-  ) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleFavorite({ ...item, parentLabel: label });
-  };
-
-  const baseClasses = `flex hover:bg-secondary/5 items-center justify-between p-2 rounded-lg transition-colors ${
-    isActive
-      ? "text-secondary font-bold bg-secondary/10"
-      : "hover:bg-secondary/5"
-  }`;
-
-  if (!submenu) {
+  if (submenu) {
     return (
-      <li>
-        <Link href={href} className={baseClasses}>
-          <div className="flex items-center gap-3">
-            {icon && <span className="text-gray-500">{icon}</span>}
-            <span className="text-gray-700 text-xs">{label}</span>
-          </div>
-          {badge && (
-            <span className="text-xs bg-gray-100 px-2 py-1 rounded">
-              {badge}
-            </span>
+      <div className="">
+        <button
+          onClick={() => onToggleMenu(title)}
+          className={`w-full flex hover:text-primary items-center space-x-3 px-3 py-2 hover:bg-secondary/5 rounded-lg text-xs ${
+            isSubMenuOpen ? "text-primary font-bold" : "text-secondarygraycolor"
+          }`}
+        >
+          <Icon className="w-5 h-5" />
+          {isExpanded && (
+            <>
+              <span>{title}</span>
+              <span className="flex-1"></span>
+              {isSubMenuOpen ? (
+                <FiChevronDown className="ml-2" />
+              ) : (
+                <FiChevronRight className="ml-2" />
+              )}
+            </>
           )}
-        </Link>
-      </li>
+        </button>
+
+        {isExpanded && isSubMenuOpen && (
+          <div className="ml-8 space-y-1 mt-1">
+            {submenu.map((item) => {
+              const isPinned = pinnedItems.includes(item.path);
+
+              return (
+                <div
+                  key={item.path}
+                  className="group relative flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-primary rounded-lg text-xs"
+                >
+                  <a href={item.path} className="flex items-center space-x-3">
+                    <item.icon className="w-4 h-4" />
+                    <span>{item.title}</span>
+                  </a>
+
+                  {onPinItem && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onPinItem({
+                          title: item.title,
+                          icon: item.icon,
+                          path: item.path,
+                        });
+                      }}
+                      className="absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <LuPin
+                        className={`w-4 h-4 hover:text-primary ${
+                          isPinned ? "text-primary rotate-45" : "text-gray-400"
+                        }`}
+                      />
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     );
   }
 
   return (
-    <li>
-      <button onClick={() => setIsOpen(!isOpen)} className={baseClasses}>
-        <div className="flex items-center gap-3">
-          {icon && <span className="text-gray-500">{icon}</span>}
-          <span className="text-gray-700 text-xs">{label}</span>
-        </div>
-        <span
-          className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}
-        >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </span>
-      </button>
-      {isOpen && (
-        <ul className="ml-8 mt-1 space-y-1">
-          {submenu.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 text-gray-600 text-xs"
-              >
-                <div className="flex items-center gap-2">
-                  {item.icon && <span>{item.icon}</span>}
-                  <span className="text-xs">{item.label}</span>
-                </div>
-                <button
-                  onClick={(e) => handlePin(e, item)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  {isPinned ? (
-                    <BsPinFill className="w-3 h-3" />
-                  ) : (
-                    <BsPin className="w-3 h-3" />
-                  )}
-                </button>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </li>
+    <a
+      href={path}
+      className="flex w-fit items-center space-x-3 px-4 py-2 text-secondarygraycolor hover:bg-secondary/5 hover:text-primary rounded-lg text-xs"
+    >
+      <Icon className="w-5 h-5" />
+      {isExpanded && <span>{title}</span>}
+    </a>
   );
-}
+};
+
+export default MenuItem;

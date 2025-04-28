@@ -30,7 +30,7 @@ export default function AuthPage() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -54,6 +54,9 @@ export default function AuthPage() {
             }),
           ).unwrap();
           await router.push("/");
+          toast.success("Login successful!");
+        } else {
+          toast.error("Please fill in all required fields.");
         }
       } else {
         if (
@@ -64,16 +67,20 @@ export default function AuthPage() {
           formData.companyName &&
           acceptTerms
         ) {
-          await dispatch(registerUser({
-            username: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            password: formData.password,
-            companyname: formData.companyName,
-            ispartner: false
-          })).unwrap();
+          await dispatch(
+            registerUser({
+              username: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              password: formData.password,
+              companyname: formData.companyName,
+              ispartner: false,
+            }),
+          ).unwrap();
           setShowOtpModal(true);
-          toast.success('Registration successful! Please verify OTP sent to your email.');
+          toast.success(
+            "Registration successful! Please verify OTP sent to your email.",
+          );
         }
       }
     } catch (error) {
@@ -89,10 +96,10 @@ export default function AuthPage() {
     try {
       await dispatch(verifyOtp({ email: formData.email, otp })).unwrap();
       setShowOtpModal(false);
-      router.push('/');
-      toast.success('Email verified successfully!');
+      router.push("/");
+      toast.success("Email verified successfully!");
     } catch (error) {
-      toast.error('OTP verification failed');
+      toast.error("OTP verification failed");
     }
   };
 
@@ -111,7 +118,10 @@ export default function AuthPage() {
                 placeholder="Enter OTP"
                 className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs"
               />
-              <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
+              <button
+                type="submit"
+                className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+              >
                 Verify OTP
               </button>
             </form>
