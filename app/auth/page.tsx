@@ -47,7 +47,7 @@ export default function AuthPage() {
         if (formData.email && formData.password) {
           const result = await dispatch(
             loginUser({
-              email: formData.email,
+              identifier: formData.email,
               password: formData.password,
             }),
           ).unwrap();
