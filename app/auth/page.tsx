@@ -1,3 +1,4 @@
+
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -8,11 +9,13 @@ import toast from 'react-hot-toast';
 export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const result = await dispatch(loginUser({ email, password })).unwrap();
       if (result.status) {
@@ -22,6 +25,8 @@ export default function AuthPage() {
       }
     } catch (error: any) {
       toast.error(error.message || 'Login failed');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -52,9 +57,10 @@ export default function AuthPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700"
+            disabled={isLoading}
+            className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 disabled:bg-purple-400"
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>

@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 interface LoginPayload {
@@ -9,25 +10,17 @@ interface AuthState {
   user: {
     email?: string;
     userid?: string;
-    username?: string;
-    phone?: string;
-    isverified?: boolean;
-    ispartner?: boolean;
-    iscustomer?: boolean;
-    issuperadmin?: boolean;
-    isadmin?: boolean;
-    licensenumber?: string;
     action?: {
-      isactive: boolean;
-      ismodify: boolean;
-      isdelete: boolean;
+      ispartner: boolean;
+      isverified: boolean;
+      issuperadmin: boolean;
+      issuspended: boolean;
     };
   };
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
-  companies: any[];
 }
 
 const initialState: AuthState = {
@@ -36,13 +29,12 @@ const initialState: AuthState = {
   isAuthenticated: false,
   loading: false,
   error: null,
-  companies: [],
 };
 
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: LoginPayload) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
+    const response = await fetch('http://0.0.0.0:8009/api/v3/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +73,6 @@ const authSlice = createSlice({
         state.user = {
           email: action.payload.email,
           userid: action.payload.userid,
-          username: action.payload.username,
           action: action.payload.action
         };
       })
