@@ -1,0 +1,139 @@
+1. User Registration Flow
+Page: Create a registration page at /register with the following input fields:
+
+username: Full name of the user.
+
+email: User's email address.
+
+phone: User's phone number.
+
+password: User's password.
+
+companyname: Name of the user's company.
+
+ispartner: Boolean indicating partnership status.
+
+API Integration:
+
+Endpoint: https://host.mraix.com/api/v3/auth/signup
+
+Method: POST
+
+Payload:
+
+json
+Copy
+Edit
+{
+  "username": "Abhinav Kumar Arya",
+  "email": "abhino33v@cevious.com",
+  "phone": "7970370554",
+  "password": "admin@#123",
+  "companyname": "100%",
+  "ispartner": true
+}
+On successful registration, trigger the OTP verification modal.
+
+2. OTP Verification Modal
+Design: Implement a centered modal dialog using Tailwind CSS that prompts the user to enter the OTP sent to their email.
+
+Functionality:
+
+API Endpoint: https://host.mraix.com/api/v3/auth/verify/{email}
+
+Replace {email} with the user's email address.
+
+Method: POST
+
+Payload:
+
+json
+Copy
+Edit
+{
+  "otp": "123456"
+}
+On successful OTP verification:
+
+Store the received token in localStorage with the key token.
+
+Redirect the user to the home page (/ route).
+
+3. State Management with Redux Toolkit
+Setup:
+
+Configure Redux Toolkit for global state management.
+
+Create an authSlice to handle authentication-related state, including:
+
+User information.
+
+Authentication status.
+
+Token management.
+
+Actions:
+
+registerUser: Handles user registration API call.
+
+verifyOtp: Handles OTP verification API call.
+
+setToken: Stores the token in both Redux state and localStorage.
+
+logout: Clears user data and token from state and localStorage.
+
+4. Routing and Access Control
+Public Routes:
+
+/login
+
+/register
+
+Accessible only when the user is not authenticated.
+
+Protected Routes:
+
+/ (Home page)
+
+Any other routes that require authentication.
+
+Accessible only when the user is authenticated.
+
+Redirection Logic:
+
+If an unauthenticated user tries to access a protected route, redirect them to /login.
+
+If an authenticated user tries to access /login or /register, redirect them to /.
+
+5. Environment Variables
+API Base URL:
+
+Store the base URL in an environment variable.
+
+File: .env.local
+
+Variable:
+
+ini
+Copy
+Edit
+NEXT_PUBLIC_API_BASE_URL=https://host.mraix.com/api/v3
+Use this variable to construct API endpoints.
+
+6. User Experience Enhancements
+Feedback:
+
+Display success and error messages based on API responses.
+
+Use toast notifications or inline messages styled with Tailwind CSS.
+
+Accessibility:
+
+Ensure the OTP modal is accessible via keyboard navigation.
+
+Provide clear instructions and labels for input fields.
+
+Responsiveness:
+
+Ensure the registration page and OTP modal are responsive across different screen sizes.
+
