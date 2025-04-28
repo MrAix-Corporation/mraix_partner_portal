@@ -144,24 +144,10 @@ export default function AuthPage() {
     <>
       {isLoading && <LoadingSpinner />}
       <OtpVerificationModal
-        email={formData.email}
-        isOpen={showOtpModal}
-        onClose={() => setShowOtpModal(false)}
-        onVerify={async (otp) => {
-          try {
-            await dispatch(
-              verifyOtp({
-                email: formData.email,
-                verificationcode: otp,
-              })
-            ).unwrap();
-            setShowOtpModal(false);
-            router.push("/");
-            toast.success("Email verified successfully!");
-          } catch (error) {
-            toast.error("OTP verification failed");
-          }
-        }}
+        email,
+        onVerify,
+        isOpen={showForgotPasswordModal}
+        onClose={() => setShowForgotPasswordModal(false)}
       />
       <OtpVerificationModal
         email={formData.email}
