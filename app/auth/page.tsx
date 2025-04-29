@@ -168,7 +168,7 @@ export default function AuthPage() {
         }}
       />
       <div className="flex flex-col md:flex-row min-h-screen">
-        <div className="hidden md:flex md:w-1/2 bg-purple-600 p-6 md:p-16 flex-col justify-center">
+        <div className="w-full md:w-1/2 bg-purple-600 p-6 md:p-16 flex flex-col justify-center">
           <h1 className="text-4xl font-bold text-white mb-4">
             Welcome to MrAix
           </h1>
@@ -223,7 +223,7 @@ export default function AuthPage() {
           </div>
         </div>
 
-        <div className="w-full flex items-center justify-center bg-gray-50 p-4 md:p-0">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50 p-4 md:p-0">
           <div className="w-full max-w-[450px] p-6 md:p-8 bg-white rounded-2xl shadow-sm">
             <h2 className="text-2xl border-b border-b-gray-200 pb-4 font-semibold text-purple-600 mb-4">
               {isLoginMode ? "Login" : "Register"}
