@@ -167,8 +167,8 @@ export default function AuthPage() {
           }
         }}
       />
-      <div className="flex min-h-screen">
-        <div className="w-1/2 bg-purple-600 p-16 flex flex-col justify-center">
+      <div className="flex flex-col md:flex-row min-h-screen">
+        <div className="w-full md:w-1/2 bg-purple-600 p-6 md:p-16 flex flex-col justify-center">
           <h1 className="text-4xl font-bold text-white mb-4">
             Welcome to MrAix
           </h1>
@@ -178,7 +178,7 @@ export default function AuthPage() {
             create, send, and track invoices with professional...
           </p>
 
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             {[
               {
                 title: "Easy Invoicing",
@@ -223,8 +223,8 @@ export default function AuthPage() {
           </div>
         </div>
 
-        <div className="w-1/2 flex items-center justify-center bg-gray-50">
-          <div className="w-[450px] p-8 bg-white rounded-2xl shadow-sm">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50 p-4 md:p-0">
+          <div className="w-full max-w-[450px] p-6 md:p-8 bg-white rounded-2xl shadow-sm">
             <h2 className="text-2xl border-b border-b-gray-200 pb-4 font-semibold text-purple-600 mb-4">
               {isLoginMode ? "Login" : "Register"}
             </h2>
